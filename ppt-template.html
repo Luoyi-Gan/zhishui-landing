@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>路演模版 — 智水清源</title>
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --blue-dark:#003399;
+    --blue:#0057D9;
+    --blue-mid:#0077FF;
+    --blue-light:#00AAFF;
+    --white:#fff;
+    --text:#1a1a2e;
+    --text2:#5a6178;
+    --text3:#9aa0b4;
+    --border:rgba(0,0,0,0.07);
+    --font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  }
+  html{scroll-behavior:smooth;scroll-padding-top:0}
+  body{font-family:var(--font);background:#000;overflow:hidden;user-select:none}
+
+  /* ── 封面风格背景 ── */
+  .slide-cover{
+    background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue) 35%,var(--blue-mid) 65%,var(--blue-light) 100%);
+    background-size:300% 300%;
+    animation:coverBg 8s ease infinite;
+    min-height:100vh;
+  }
+  @keyframes coverBg{0%,100%{background-position:0% 50%}50%{background-position:100% 20%}}
+
+  /* ── 通用幻灯片框架 ── */
+  .slide{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    position:relative;
+  }
+
+  /* 封面 */
+  .slide-cover{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px;
+    position:relative;
+  }
+  .slide-cover::after{
+    content:'';position:absolute;bottom:0;left:0;right:0;height:4px;
+    background:linear-gradient(90deg,var(--blue),var(--blue-light),rgba(255,255,255,0.3));
+  }
+  .cover-eyebrow{
+    font-size:12px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+    color:rgba(255,255,255,0.6);margin-bottom:20px;
+  }
+  .cover-title{
+    font-size:clamp(48px,8vw,96px);font-weight:900;letter-spacing:-3px;
+    color:#fff;line-height:1.05;margin-bottom:12px;
+  }
+  .cover-title span{
+    display:block;
+    background:linear-gradient(90deg,rgba(255,255,255,0.9),rgba(255,255,255,0.55));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .cover-sub{
+    font-size:clamp(16px,2vw,24px);color:rgba(255,255,255,0.75);
+    line-height:1.7;max-width:560px;margin:16px auto 40px;
+  }
+  .cover-meta{
+    font-size:13px;color:rgba(255,255,255,0.45);margin-top:60px;
+  }
+  .cover-logo{position:absolute;top:40px;left:50px;font-size:18px;font-weight:800;color:#fff;opacity:0.7;letter-spacing:-0.3px}
+
+  /* 导航条 */
+  .ppt-nav{
+    position:fixed;bottom:0;left:0;right:0;z-index:500;
+    background:rgba(0,20,60,0.85);backdrop-filter:blur(16px);
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    padding:10px 24px;
+  }
+  .ppt-dot{
+    width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.25);
+    cursor:pointer;transition:all 0.3s;border:none;padding:0;
+  }
+  .ppt-dot.active{background:#fff;transform:scale(1.3)}
+  .ppt-dot:hover{background:rgba(255,255,255,0.6)}
+
+  /* 箭头导航 */
+  .ppt-arrow{
+    position:fixed;bottom:36px;z-index:500;
+    background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);
+    color:#fff;width:40px;height:40px;border-radius:50%;
+    font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:all 0.2s;padding:0;
+  }
+  .ppt-arrow:hover{background:rgba(255,255,255,0.2)}
+  .ppt-prev{left:24px}
+  .ppt-next{right:24px}
+
+  /* 页码 */
+  .ppt-counter{
+    position:fixed;bottom:14px;left:50%;transform:translateX(-50%);
+    font-size:11px;color:rgba(255,255,255,0.4);z-index:501;
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* ── 内页通用布局 ── */
+  .slide-inner{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:80px 100px;
+    position:relative;
+    min-height:0;
+  }
+
+  /* 白底内页 */
+  .slide-white{background:var(--white);color:var(--text)}
+  /* 蓝底内页 */
+  .slide-blue{background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:#fff}
+  /* 浅蓝底内页 */
+  .slide-light{background:linear-gradient(160deg,#EEF6FF 0%,#fff 100%);color:var(--text)}
+  /* 深底内页 */
+  .slide-dark{background:linear-gradient(135deg,#001a4d,#003399);color:#fff}
+
+  /* 章节标签 */
+  .slide-label{
+    font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+    color:var(--blue);margin-bottom:12px;
+  }
+  .slide-blue .slide-label,
+  .slide-dark .slide-label,
+  .slide-cover .slide-label{color:rgba(255,255,255,0.6)}
+
+  /* 标题 */
+  .slide-title{
+    font-size:clamp(32px,5vw,56px);font-weight:900;letter-spacing:-2px;
+    line-height:1.1;margin-bottom:12px;
+  }
+  /* 副标题/说明 */
+  .slide-sub{
+    font-size:clamp(14px,1.8vw,20px);color:var(--text2);line-height:1.7;
+    max-width:680px;margin-bottom:40px;
+  }
+  .slide-blue .slide-sub,
+  .slide-dark .slide-sub,
+  .slide-cover .slide-sub{color:rgba(255,255,255,0.7)}
+
+  /* 底部装饰线 */
+  .slide-blue::after,
+  .slide-dark::after,
+  .slide-cover::after{
+    content:'';position:absolute;bottom:0;left:0;right:0;height:4px;
+    background:linear-gradient(90deg,var(--blue),var(--blue-light));
+  }
+
+  /* ── 卡片 ── */
+  .cards-3{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;
+  }
+  .cards-2{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:700px;
+  }
+  .cards-4{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:960px;
+  }
+  .card{
+    background:#fff;border-radius:16px;padding:28px 22px;
+    border:1px solid var(--border);box-shadow:0 4px 16px rgba(0,0,0,0.05);
+  }
+  .card-blue{
+    background:rgba(255,255,255,0.08);border-radius:16px;padding:28px 22px;
+    border:1px solid rgba(255,255,255,0.15);
+  }
+  .card-icon{
+    width:48px;height:48px;border-radius:12px;display:flex;
+    align-items:center;justify-content:center;margin-bottom:16px;
+  }
+  .card-icon svg{width:24px;height:24px}
+  .card-title{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--text)}
+  .card-blue .card-title{color:#fff}
+  .card-text{font-size:12px;color:var(--text2);line-height:1.7}
+  .card-blue .card-text{color:rgba(255,255,255,0.65)}
+
+  /* 数字指标 */
+  .stat-row{display:flex;gap:60px;flex-wrap:wrap;margin-top:20px}
+  .stat-item{text-align:center}
+  .stat-num{
+    font-size:clamp(36px,5vw,60px);font-weight:900;letter-spacing:-3px;
+    background:linear-gradient(120deg,var(--blue),var(--blue-light));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    line-height:1;
+  }
+  .slide-blue .stat-num,.slide-dark .stat-num{background:linear-gradient(120deg,#fff,rgba(255,255,255,0.7));-webkit-background-clip:text}
+  .stat-label{font-size:12px;color:var(--text3);margin-top:6px;font-weight:500}
+  .slide-blue .stat-label,.slide-dark .stat-label{color:rgba(255,255,255,0.5)}
+
+  /* 大号图标展示 */
+  .icon-big{
+    width:80px;height:80px;border-radius:20px;
+    display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+  }
+  .icon-big svg{width:40px;height:40px}
+  .icon-big-title{font-size:18px;font-weight:800;margin-bottom:8px}
+  .icon-big-sub{font-size:13px;line-height:1.6}
+
+  /* 时间轴 */
+  .timeline{max-width:600px}
+  .timeline-item{
+    display:flex;gap:20px;margin-bottom:24px;align-items:flex-start;
+  }
+  .timeline-dot{
+    width:12px;height:12px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:5px;
+  }
+  .slide-blue .timeline-dot,.slide-dark .timeline-dot{background:var(--blue-light)}
+  .timeline-content{}
+  .timeline-date{font-size:11px;font-weight:700;color:var(--blue);letter-spacing:1px;margin-bottom:4px}
+  .slide-blue .timeline-date,.slide-dark .timeline-date{color:rgba(255,255,255,0.5)}
+  .timeline-text{font-size:14px;font-weight:600;color:var(--text)}
+  .slide-blue .timeline-text,.slide-dark .timeline-text{color:#fff}
+  .timeline-desc{font-size:12px;color:var(--text2);margin-top:2px;line-height:1.6}
+  .slide-blue .timeline-desc,.slide-dark .timeline-desc{color:rgba(255,255,255,0.55)}
+
+  /* 团队成员 */
+  .team-grid{display:flex;gap:24px;flex-wrap:wrap;max-width:800px}
+  .team-card{
+    background:#fff;border-radius:16px;padding:24px 20px;
+    display:flex;align-items:center;gap:16px;
+    border:1px solid var(--border);width:240px;
+  }
+  .team-avatar{
+    width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue-light));
+    display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;color:#fff;font-weight:700;
+  }
+  .team-name{font-size:14px;font-weight:700;color:var(--text)}
+  .team-role{font-size:11px;color:var(--text3);margin-top:3px}
+  .team-desc{font-size:11px;color:var(--text2);margin-top:6px;line-height:1.5}
+
+  /* 联系方式 */
+  .contact-row{display:flex;gap:40px;flex-wrap:wrap;margin-top:16px}
+  .contact-item{display:flex;align-items:center;gap:10px;font-size:15px;color:rgba(255,255,255,0.8)}
+  .contact-icon{font-size:18px}
+
+  /* 引用块 */
+  .quote-block{
+    border-left:4px solid var(--blue-light);padding:16px 24px;
+    background:rgba(0,170,255,0.05);border-radius:0 12px 12px 0;
+    font-size:clamp(16px,2vw,22px);font-weight:500;line-height:1.7;
+    color:var(--text);max-width:700px;margin:20px 0;
+  }
+  .slide-blue .quote-block,.slide-dark .quote-block{
+    background:rgba(255,255,255,0.08);color:#fff;
+  }
+
+  /* 列布局 */
+  .col-2{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .col-2-text{}
+
+  /* 进度条 */
+  .progress-item{margin-bottom:18px}
+  .progress-label{display:flex;justify-content:space-between;font-size:12px;font-weight:600;margin-bottom:6px}
+  .progress-label-left{color:var(--text)}
+  .progress-label-right{color:var(--blue);font-weight:700}
+  .slide-blue .progress-label-left,
+  .slide-dark .progress-label-left{color:#fff}
+  .slide-blue .progress-label-right,
+  .slide-dark .progress-label-right{color:var(--blue-light)}
+  .progress-bar{height:8px;background:rgba(0,0,0,0.07);border-radius:4px;overflow:hidden}
+  .slide-blue .progress-bar,
+  .slide-dark .progress-bar{background:rgba(255,255,255,0.12)}
+  .progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--blue-light))}
+
+  /* 装饰元素 */
+  .deco-circle{
+    position:absolute;border-radius:50%;
+    background:linear-gradient(135deg,rgba(0,87,217,0.08),rgba(0,170,255,0.04));
+    pointer-events:none;
+  }
+  .slide-blue .deco-circle,
+  .slide-dark .deco-circle{
+    background:linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));
+  }
+
+  /* ── 动画 ── */
+  .anim{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease}
+  .anim.in{opacity:1;transform:translateY(0)}
+  .a1{transition-delay:0.1s}.a2{transition-delay:0.2s}.a3{transition-delay:0.3s}
+  .a4{transition-delay:0.4s}.a5{transition-delay:0.5s}.a6{transition-delay:0.6s}
+
+  /* 键盘提示 */
+  .keyboard-hint{
+    position:fixed;top:20px;right:24px;z-index:501;
+    font-size:11px;color:rgba(255,255,255,0.35);
+    display:flex;align-items:center;gap:6px;
+  }
+  .key{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:1px 7px;font-size:10px}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     封面
+══════════════════════════════════════════════════ -->
+<div class="slide slide-cover" id="s0">
+  <div class="cover-logo">公司名称</div>
+  <div class="cover-eyebrow anim">第十六届三创赛 · 参赛项目</div>
+  <div class="cover-title anim a1">
+    智水<span>清源</span>
+  </div>
+  <div class="cover-sub anim a2">
+    Nereus-S1 智能泳池清洁机器人<br>
+    清洁 · 监测 · 投药，一机全搞定
+  </div>
+  <div class="stat-row anim a3" style="margin-top:20px;gap:40px">
+    <div class="stat-item">
+      <div class="stat-num">8L</div>
+      <div class="stat-label" style="color:rgba(255,255,255,0.5)">垃圾篮容量</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">35%</div>
+      <div class="stat-label" style="color:rgba(255,255,255,0.5)">作业时间降低</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3合1</div>
+      <div class="stat-label" style="color:rgba(255,255,255,0.5)">传感器融合</div>
+    </div>
+  </div>
+  <div class="cover-meta anim a4">2026年4月 · 路演</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     目录
+══════════════════════════════════════════════════ -->
+<div class="slide slide-dark" id="s1">
+  <div class="slide-inner">
+    <div class="slide-label anim">CONTENTS</div>
+    <div class="slide-title anim a1" style="margin-bottom:48px">目录</div>
+    <div class="cards-4 anim a2">
+      <div class="card-blue" style="text-align:center">
+        <div style="font-size:28px;margin-bottom:10px">🎯</div>
+        <div style="font-size:14px;font-weight:700;color:#fff">痛点</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px">市场问题</div>
+      </div>
+      <div class="card-blue" style="text-align:center">
+        <div style="font-size:28px;margin-bottom:10px">💡</div>
+        <div style="font-size:14px;font-weight:700;color:#fff">方案</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px">解决方案</div>
+      </div>
+      <div class="card-blue" style="text-align:center">
+        <div style="font-size:28px;margin-bottom:10px">🚀</div>
+        <div style="font-size:14px;font-weight:700;color:#fff">市场</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px">市场规模</div>
+      </div>
+      <div class="card-blue" style="text-align:center">
+        <div style="font-size:28px;margin-bottom:10px">⚙️</div>
+        <div style="font-size:14px;font-weight:700;color:#fff">产品</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px">核心功能</div>
+      </div>
+      <div class="card-blue" style="text-align:center">
+        <div style="font-size:28px;margin-bottom:10px">📊</div>
+        <div style="font-size:14px;font-weight:700;color:#fff">商业模式</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px">盈利路径</div>
+      </div>
+      <div class="card-blue" style="text-align:center">
+        <div style="font-size:28px;margin-bottom:10px">⚔️</div>
+        <div style="font-size:14px;font-weight:700;color:#fff">竞争</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px">竞争优势</div>
+      </div>
+      <div class="card-blue" style="text-align:center">
+        <div style="font-size:28px;margin-bottom:10px">👥</div>
+        <div style="font-size:14px;font-weight:700;color:#fff">团队</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px">核心成员</div>
+      </div>
+      <div class="card-blue" style="text-align:center">
+        <div style="font-size:28px;margin-bottom:10px">📅</div>
+        <div style="font-size:14px;font-weight:700;color:#fff">规划</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px">里程碑</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     痛点
+══════════════════════════════════════════════════ -->
+<div class="slide slide-white" id="s2">
+  <div class="slide-inner">
+    <div class="slide-label anim">01 · PAIN POINT</div>
+    <div class="slide-title anim a1">市场痛点</div>
+    <div class="slide-sub anim a2">传统泳池清洁依赖人工，效率低、成本高、效果差</div>
+    <div class="cards-3 anim a3">
+      <div class="card">
+        <div class="card-icon" style="background:rgba(255,59,48,0.07)"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" stroke="#FF3B30" stroke-width="1.8"/><path d="M12 8v4M12 16h.01" stroke="#FF3B30" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="card-title">人工成本高</div>
+        <div class="card-text">专业清洁人员月薪 ¥6,000+，频繁清洁费用累积，旺季人手不足。</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(255,149,0,0.07)"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#FF9500" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#FF9500" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-title">清洁效率低</div>
+        <div class="card-text">现有设备多为有线操作，覆盖不均匀，角落盲区多，维护周期长。</div>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(0,87,217,0.07)"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#0057D9" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="#0057D9" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="card-title">水质监测滞后</div>
+        <div class="card-text">pH/余氯异常靠人工检测，响应慢，夏季高峰易出现水质安全事故。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     解决方案
+══════════════════════════════════════════════════ -->
+<div class="slide slide-blue" id="s3">
+  <div class="slide-inner">
+    <div class="slide-label anim">02 · SOLUTION</div>
+    <div class="slide-title anim a1">解决方案</div>
+    <div class="slide-sub anim a2">Nereus-S1 一机替代人工，提供全方位智能清洁与实时监测</div>
+    <div class="cards-3 anim a3">
+      <div class="card-blue">
+        <div style="font-size:32px;margin-bottom:12px">🤖</div>
+        <div class="card-title">全自动化作业</div>
+        <div class="card-text">GPS+惯导+超声波融合导航，一键启动，自动规划全域清洁路径，无需人工干预。</div>
+      </div>
+      <div class="card-blue">
+        <div style="font-size:32px;margin-bottom:12px">💧</div>
+        <div class="card-title">实时水质监测</div>
+        <div class="card-text">pH、余氯、浊度三合一传感器，24小时云端同步，异常实时告警推送手机。</div>
+      </div>
+      <div class="card-blue">
+        <div style="font-size:32px;margin-bottom:12px">💊</div>
+        <div class="card-title">智能精准投药</div>
+        <div class="card-text">装配药剂槽，根据水质数据自动计算投药量，维持pH稳定，减少药剂浪费60%。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     产品展示
+══════════════════════════════════════════════════ -->
+<div class="slide slide-white" id="s4">
+  <div class="slide-inner">
+    <div class="slide-label anim">03 · PRODUCT</div>
+    <div class="col-2">
+      <div>
+        <div class="slide-title anim a1">产品核心功能</div>
+        <div class="slide-sub anim a2" style="margin-bottom:32px">六大核心能力，构建完整泳池管理闭环</div>
+        <div class="progress-item anim a3">
+          <div class="progress-label"><span class="progress-label-left">清洁效率</span><span class="progress-label-right">95%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
+        </div>
+        <div class="progress-item anim a4">
+          <div class="progress-label"><span class="progress-label-left">水质监测覆盖率</span><span class="progress-label-right">100%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+        </div>
+        <div class="progress-item anim a5">
+          <div class="progress-label"><span class="progress-label-left">投药精准度</span><span class="progress-label-right">87%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:87%"></div></div>
+        </div>
+        <div class="progress-item anim a6">
+          <div class="progress-label"><span class="progress-label-left">太阳能自续航</span><span class="progress-label-right">65%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px" class="anim a2">
+        <div style="background:linear-gradient(135deg,#EEF6FF,#d8ecff);border-radius:16px;padding:24px;text-align:center">
+          <div style="font-size:40px;margin-bottom:8px">🏊</div>
+          <div style="font-size:13px;font-weight:700;color:var(--text)">Nereus-S1</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px">智能泳池清洁机器人</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="background:var(--text);border-radius:14px;padding:18px;text-align:center">
+            <div style="font-size:22px;font-weight:900;color:#fff">8L</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.45);margin-top:4px">垃圾容量</div>
+          </div>
+          <div style="background:var(--text);border-radius:14px;padding:18px;text-align:center">
+            <div style="font-size:22px;font-weight:900;color:#fff">13.5W</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.45);margin-top:4px">太阳能</div>
+          </div>
+          <div style="background:var(--text);border-radius:14px;padding:18px;text-align:center">
+            <div style="font-size:22px;font-weight:900;color:#fff">蓝牙</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.45);margin-top:4px">APP控制</div>
+          </div>
+          <div style="background:var(--text);border-radius:14px;padding:18px;text-align:center">
+            <div style="font-size:22px;font-weight:900;color:#fff">IP68</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.45);margin-top:4px">防水等级</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     市场分析
+══════════════════════════════════════════════════ -->
+<div class="slide slide-light" id="s5">
+  <div class="slide-inner">
+    <div class="slide-label anim">04 · MARKET</div>
+    <div class="slide-title anim a1">市场规模</div>
+    <div class="slide-sub anim a2">泳池经济快速增长，智能化升级需求爆发</div>
+    <div class="cards-3 anim a3">
+      <div class="card" style="text-align:center;border:2px solid rgba(0,87,217,0.15)">
+        <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:10px">中国泳池市场规模</div>
+        <div style="font-size:clamp(28px,4vw,44px);font-weight:900;background:linear-gradient(120deg,#0057D9,#00AAFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px">¥380亿</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:6px">2025年</div>
+        <div style="margin-top:12px;font-size:12px;color:#34c759;font-weight:700">年增速 18% ↑</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:10px">智能清洁设备渗透率</div>
+        <div style="font-size:clamp(28px,4vw,44px);font-weight:900;background:linear-gradient(120deg,#0057D9,#00AAFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px">12%</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:6px">当前 → 2030年 45%</div>
+        <div style="margin-top:12px;font-size:12px;color:#34c759;font-weight:700">CAGR 24% ↑</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:10px">目标用户规模</div>
+        <div style="font-size:clamp(28px,4vw,44px);font-weight:900;background:linear-gradient(120deg,#0057D9,#00AAFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px">1,200万</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:6px">B端+C端</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--blue);font-weight:700">民宿/酒店/私家泳池</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     商业模式
+══════════════════════════════════════════════════ -->
+<div class="slide slide-blue" id="s6">
+  <div class="slide-inner">
+    <div class="slide-label anim">05 · BUSINESS MODEL</div>
+    <div class="slide-title anim a1">商业模式</div>
+    <div class="slide-sub anim a2">硬件 + 订阅服务 + 耗材，复合收入结构</div>
+    <div class="cards-3 anim a3">
+      <div class="card-blue" style="border:1px solid rgba(255,255,255,0.2)">
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;letter-spacing:1px;margin-bottom:10px">硬件销售</div>
+        <div style="font-size:24px;font-weight:900;color:#fff;margin-bottom:10px">¥8,800</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6">
+          Nereus-S1 机器人本体<br>
+          一次性销售，线上+线下渠道
+        </div>
+      </div>
+      <div class="card-blue" style="border:1px solid rgba(255,255,255,0.2)">
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;letter-spacing:1px;margin-bottom:10px">订阅服务</div>
+        <div style="font-size:24px;font-weight:900;color:#fff;margin-bottom:10px">¥499/年</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6">
+          云端管家 + AI水质周报<br>
+          高复购、高毛利、现金流稳定
+        </div>
+      </div>
+      <div class="card-blue" style="border:1px solid rgba(255,255,255,0.2)">
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;letter-spacing:1px;margin-bottom:10px">上门服务+耗材</div>
+        <div style="font-size:24px;font-weight:900;color:#fff;margin-bottom:10px">¥1,899/季</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6">
+          深度清洁 + 药剂补给<br>
+          面向B端，高客单价
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     竞争优势
+══════════════════════════════════════════════════ -->
+<div class="slide slide-white" id="s7">
+  <div class="slide-inner">
+    <div class="slide-label anim">06 · COMPETITION</div>
+    <div class="slide-title anim a1">竞争优势</div>
+    <div class="slide-sub anim a2">三大壁垒，构建难以复制的护城河</div>
+    <div class="cards-3 anim a3">
+      <div class="card" style="border:2px solid rgba(0,87,217,0.2)">
+        <div class="card-icon" style="background:rgba(0,87,217,0.07)"><svg viewBox="0 0 24 24" fill="none"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke="#0057D9" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="card-title">技术壁垒</div>
+        <div class="card-text">多传感器融合算法、边缘计算、自适应路径规划，3项核心专利申请中。</div>
+      </div>
+      <div class="card" style="border:2px solid rgba(0,87,217,0.2)">
+        <div class="card-icon" style="background:rgba(0,87,217,0.07)"><svg viewBox="0 0 24 24" fill="none"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke="#0057D9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-title">数据壁垒</div>
+        <div class="card-text">水质数据库持续积累，AI模型随用户规模不断优化，后来者难以追赶。</div>
+      </div>
+      <div class="card" style="border:2px solid rgba(0,87,217,0.2)">
+        <div class="card-icon" style="background:rgba(0,87,217,0.07)"><svg viewBox="0 0 24 24" fill="none"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#0057D9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="card-title">生态壁垒</div>
+        <div class="card-text">硬件+APP+云平台三位一体，订阅服务锁定用户，高转换成本降低流失率。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     团队
+══════════════════════════════════════════════════ -->
+<div class="slide slide-white" id="s8">
+  <div class="slide-inner">
+    <div class="slide-label anim">07 · TEAM</div>
+    <div class="slide-title anim a1">核心团队</div>
+    <div class="slide-sub anim a2" style="margin-bottom:40px">跨学科背景，产学研深度融合</div>
+    <div class="team-grid anim a3">
+      <div class="team-card">
+        <div class="team-avatar">张</div>
+        <div>
+          <div class="team-name">张XX</div>
+          <div class="team-role">创始人 & CEO</div>
+          <div class="team-desc">XX大学 MBA，10年智能硬件经验</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">李</div>
+        <div>
+          <div class="team-name">李XX</div>
+          <div class="team-role">CTO</div>
+          <div class="team-desc">XX大学 博士，机器人算法专家</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">王</div>
+        <div>
+          <div class="team-name">王XX</div>
+          <div class="team-role">COO</div>
+          <div class="team-desc">前XX科技运营总监，精益生产</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">陈</div>
+        <div>
+          <div class="team-name">陈XX</div>
+          <div class="team-role">市场总监</div>
+          <div class="team-desc">泳池行业8年渠道经验</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     里程碑
+══════════════════════════════════════════════════ -->
+<div class="slide slide-dark" id="s9">
+  <div class="slide-inner">
+    <div class="slide-label anim">08 · MILESTONE</div>
+    <div class="slide-title anim a1">发展规划</div>
+    <div class="slide-sub anim a2" style="margin-bottom:40px">清晰路径，稳扎稳打</div>
+    <div class="col-2 anim a3">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-date">2026 Q2</div>
+            <div class="timeline-text">完成产品量产</div>
+            <div class="timeline-desc">小批量生产500台，建立供应链</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-date">2026 Q4</div>
+            <div class="timeline-text">种子用户验证</div>
+            <div class="timeline-desc">B端民宿30家+C端50台，月流水破10万</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-date">2027 Q2</div>
+            <div class="timeline-text">A轮融资</div>
+            <div class="timeline-desc">目标融资500万，用于扩产+市场推广</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-date">2028</div>
+            <div class="timeline-text">市场占有率目标</div>
+            <div class="timeline-desc">B端TOP3，年营收突破3000万</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:rgba(255,255,255,0.07);border-radius:16px;padding:24px;border:1px solid rgba(255,255,255,0.1)">
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;margin-bottom:8px">累计融资金额目标</div>
+          <div style="font-size:clamp(28px,4vw,40px);font-weight:900;color:#fff;letter-spacing:-2px">¥800万</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:6px">种子轮 + A轮</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.07);border-radius:16px;padding:24px;border:1px solid rgba(255,255,255,0.1)">
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:600;margin-bottom:8px">3年后估值目标</div>
+          <div style="font-size:clamp(28px,4vw,40px);font-weight:900;color:#fff;letter-spacing:-2px">¥1亿</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:6px">B轮前</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     联系方式
+══════════════════════════════════════════════════ -->
+<div class="slide slide-blue" id="s10">
+  <div class="slide-inner" style="align-items:center;text-align:center">
+    <div class="slide-label anim">THANKS</div>
+    <div class="slide-title anim a1" style="font-size:clamp(40px,6vw,72px);margin-bottom:16px">
+      感谢聆听
+    </div>
+    <div class="slide-sub anim a2" style="margin-bottom:48px">
+      期待与您深入交流，共同推动泳池智能化变革
+    </div>
+    <div class="contact-row anim a3" style="justify-content:center">
+      <div class="contact-item"><span class="contact-icon">📧</span> contact@shuboat.com</div>
+      <div class="contact-item"><span class="contact-icon">📱</span> 138-0000-0000</div>
+      <div class="contact-item"><span class="contact-icon">🌐</span> www.shuboat.com</div>
+    </div>
+    <div class="cover-meta anim a4" style="margin-top:80px">
+      沭波特智能科技（深圳）有限公司
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     底部导航
+══════════════════════════════════════════════════ -->
+<div class="ppt-nav" id="pptNav"></div>
+<button class="ppt-arrow ppt-prev" id="prevBtn" onclick="prevSlide()">‹</button>
+<button class="ppt-arrow ppt-next" id="nextBtn" onclick="nextSlide()">›</button>
+<div class="ppt-counter" id="pptCounter"></div>
+<div class="keyboard-hint">
+  <span class="key">←</span><span class="key">→</span> 或 <span class="key">空格</span> 翻页
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  // 生成导航点
+  const nav = document.getElementById('pptNav');
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'ppt-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    nav.appendChild(dot);
+  });
+  const dots = document.querySelectorAll('.ppt-dot');
+
+  function update() {
+    slides.forEach((s, i) => s.style.display = i === current ? 'flex' : 'none');
+    dots.forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+      if (i === current) d.classList.add('in');
+    });
+    document.getElementById('pptCounter').textContent = (current + 1) + ' / ' + slides.length;
+
+    // 触发当前页动画
+    const activeSlide = slides[current];
+    activeSlide.querySelectorAll('.anim').forEach(el => {
+      el.classList.remove('in');
+      void el.offsetWidth; // reflow
+      setTimeout(() => el.classList.add('in'), 50);
+    });
+  }
+
+  function goTo(n) {
+    current = Math.max(0, Math.min(n, slides.length - 1));
+    update();
+  }
+  function nextSlide() { goTo(current + 1); }
+  function prevSlide() { goTo(current - 1); }
+
+  // 键盘控制
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+  });
+
+  // 触摸滑动
+  let touchX = 0;
+  document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) { dx < 0 ? nextSlide() : prevSlide(); }
+  });
+
+  update();
+</script>
+</body>
+</html>
