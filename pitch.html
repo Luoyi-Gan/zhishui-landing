@@ -15,7 +15,6 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--font);overflow:hidden;background:#000}
 
-/* ── 全屏幻灯片 ── */
 .slide{width:100vw;height:100vh;position:relative;overflow:hidden;display:none;flex-direction:column}
 .slide.active{display:flex}
 
@@ -27,691 +26,995 @@ body{font-family:var(--font);overflow:hidden;background:#000}
 .bg-dark{position:absolute;inset:0;background:linear-gradient(135deg,#001a4d,#003399)}
 .bg-glass{position:absolute;inset:0;background:linear-gradient(160deg,#EEF6FF 0%,#fff 100%)}
 .bg-blue{position:absolute;inset:0;background:linear-gradient(135deg,#003399,#0057D9)}
+.bg-light{position:absolute;inset:0;background:#fff}
 
-/* 底部线 */
 .slide::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;
   background:linear-gradient(90deg,#0057D9,#00AAFF,#0077FF);z-index:10}
 
-/* 装饰 */
 .deco{position:absolute;border-radius:50%;pointer-events:none}
 
-/* 内容 */
-.content{position:relative;z-index:5;flex:1;padding:72px 100px;
+/* 内容区 */
+.content{position:relative;z-index:5;flex:1;padding:56px 90px;
   display:flex;flex-direction:column;justify-content:center}
+
+.content-full{position:relative;z-index:5;flex:1;padding:56px 90px;
+  display:flex;flex-direction:column}
 
 /* 标签 */
 .label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
-  color:rgba(255,255,255,0.45);margin-bottom:10px}
+  color:rgba(255,255,255,0.45);margin-bottom:8px}
 .label-dark{color:var(--blue)}
 
 /* 标题 */
-.title{font-size:clamp(34px,5vw,58px);font-weight:900;letter-spacing:-2px;
-  color:#fff;line-height:1.08;margin-bottom:8px}
+.title{font-size:clamp(30px,4.5vw,52px);font-weight:900;letter-spacing:-2px;
+  color:#fff;line-height:1.1;margin-bottom:6px}
 .title-dark{color:var(--text)}
 .title span{
   background:linear-gradient(120deg,#fff,#a8d4ff);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
 /* 副标题 */
-.sub{font-size:clamp(13px,1.6vw,18px);color:rgba(255,255,255,0.68);
-  line-height:1.7;max-width:560px;margin-bottom:32px}
+.sub{font-size:clamp(13px,1.5vw,17px);color:rgba(255,255,255,0.65);
+  line-height:1.65;max-width:560px;margin-bottom:24px}
 .sub-dark{color:var(--text2)}
 
-/* 统计卡片 */
-.stats-row{display:flex;gap:20px;flex-wrap:wrap}
-.stat-card{background:rgba(255,255,255,0.08);border-radius:18px;padding:18px 24px;
-  border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(12px);text-align:center;min-width:110px}
-.stat-num{font-size:clamp(24px,2.8vw,32px);font-weight:900;color:#fff;letter-spacing:-2px;line-height:1}
-.stat-label{font-size:10px;color:rgba(255,255,255,0.45);margin-top:4px}
+/* 统计行 */
+.stats-row{display:flex;gap:16px;flex-wrap:wrap}
+.stat-card{background:rgba(255,255,255,0.08);border-radius:16px;padding:16px 22px;
+  border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(12px);
+  text-align:center;min-width:100px}
+.stat-num{font-size:clamp(20px,2.4vw,28px);font-weight:900;color:#fff;letter-spacing:-2px;line-height:1}
+.stat-label{font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px}
 
 /* 网格 */
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:920px}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:920px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:960px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:960px}
+.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:960px}
 
 /* 卡片 */
-.card{background:#fff;border-radius:16px;padding:20px 18px;
-  border:1px solid var(--border);box-shadow:0 4px 16px rgba(0,0,0,0.05)}
-.card-blue{background:rgba(255,255,255,0.07);border-radius:16px;padding:20px 18px;
+.card{background:#fff;border-radius:14px;padding:18px 16px;
+  border:1px solid var(--border);box-shadow:0 3px 12px rgba(0,0,0,0.05)}
+.card-blue{background:rgba(255,255,255,0.07);border-radius:14px;padding:18px 16px;
   border:1px solid rgba(255,255,255,0.12)}
-
 .card-title{font-size:13px;font-weight:700;margin-bottom:5px;color:var(--text)}
 .card-blue .card-title{color:#fff}
 .card-text{font-size:11px;color:var(--text2);line-height:1.6}
 .card-blue .card-text{color:rgba(255,255,255,0.6)}
-.card-num{font-size:clamp(22px,2.5vw,28px);font-weight:900;
+.card-num{font-size:clamp(20px,2.2vw,26px);font-weight:900;
   background:linear-gradient(120deg,var(--blue),var(--blue-light));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px}
-.card-trend{font-size:11px;font-weight:700;color:#34C759;margin-top:4px}
 
-/* SVG 图表 */
-.chart-wrap{width:100%;max-width:920px}
-.chart-title{font-size:11px;font-weight:700;color:var(--text2);margin-bottom:12px;letter-spacing:1px}
+/* 图表 */
+.chart-wrap{width:100%}
+.chart-title{font-size:10px;font-weight:700;color:var(--text2);margin-bottom:10px;letter-spacing:1px}
 
-/* SWOT 格子 */
-.swot{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:820px}
-.swot-item{border-radius:14px;padding:18px 16px}
-.swot-s{background:rgba(0,87,217,0.07);border:1px solid rgba(0,87,217,0.12)}
-.swot-w{background:rgba(255,59,48,0.06);border:1px solid rgba(255,59,48,0.12)}
-.swot-o{background:rgba(52,199,89,0.07);border:1px solid rgba(52,199,89,0.12)}
-.swot-t{background:rgba(255,149,0,0.07);border:1px solid rgba(255,149,0,0.12)}
-.swot-label{font-size:11px;font-weight:800;margin-bottom:6px;letter-spacing:2px}
-.swot-s .swot-label{color:var(--blue)}
-.swot-w .swot-label{color:#FF3B30}
-.swot-o .swot-label{color:#34C759}
-.swot-t .swot-label{color:#FF9500}
-.swot-items{font-size:11px;color:var(--text2);line-height:1.8}
+/* 图标+文字组合 */
+.icon-block{display:flex;gap:14px;align-items:flex-start;margin-bottom:12px}
+.icon-circle{width:40px;height:40px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
+.icon-info{flex:1}
+.icon-info-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px}
+.icon-info-text{font-size:10px;color:var(--text2);line-height:1.5}
 
-/* 流程图 */
-.flow{display:flex;gap:12px;flex-wrap:wrap;max-width:900px;align-items:center}
-.flow-item{background:#fff;border-radius:14px;padding:14px 18px;
-  border:1px solid var(--border);text-align:center;min-width:120px;flex:1}
-.flow-arrow{color:var(--blue-light);font-size:18px}
+/* 流程 */
+.flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.flow-step{background:#fff;border-radius:12px;padding:12px 16px;
+  border:1px solid var(--border);text-align:center;flex:1;min-width:100px}
+.flow-arrow{color:var(--blue-light);font-size:16px;flex-shrink:0}
 
 /* 导航 */
-.nav-bar{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:100;
+.nav-bar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:100;
   background:rgba(0,20,60,0.85);backdrop-filter:blur(16px);
-  padding:8px 18px;border-radius:980px;border:1px solid rgba(255,255,255,0.1);
-  display:flex;gap:6px;align-items:center}
-.nav-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.2);
+  padding:7px 16px;border-radius:980px;border:1px solid rgba(255,255,255,0.1);
+  display:flex;gap:5px;align-items:center}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);
   cursor:pointer;border:none;transition:all 0.3s}
 .nav-dot.active{background:#fff;transform:scale(1.4)}
-.nav-dot:hover{background:rgba(255,255,255,0.6)}
-
-.key-hint{position:fixed;top:14px;right:18px;z-index:101;
-  font-size:10px;color:rgba(255,255,255,0.22);
-  display:flex;align-items:center;gap:4px}
-.key{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);
-  border-radius:4px;padding:1px 5px;font-size:9px}
+.key-hint{position:fixed;top:12px;right:16px;z-index:101;
+  font-size:9px;color:rgba(255,255,255,0.2);
+  display:flex;align-items:center;gap:3px}
+.key{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  border-radius:3px;padding:1px 5px;font-size:8px}
 
 /* 动画 */
-.anim{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease}
+.anim{opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease}
 .anim.in{opacity:1;transform:translateY(0)}
-.a1{transition-delay:0.08s}.a2{transition-delay:0.16s}.a3{transition-delay:0.24s}
-.a4{transition-delay:0.32s}.a5{transition-delay:0.4s}.a6{transition-delay:0.48s}
+.a1{transition-delay:0.06s}.a2{transition-delay:0.12s}.a3{transition-delay:0.18s}
+.a4{transition-delay:0.24s}.a5{transition-delay:0.3s}.a6{transition-delay:0.36s}
+.a7{transition-delay:0.42s}.a8{transition-delay:0.48s}
+
+/* 滚动提示 */
+.scroll-hint{position:fixed;bottom:50px;left:50%;transform:translateX(-50%);
+  font-size:9px;color:rgba(255,255,255,0.25);z-index:100;animation:hintPulse 2s ease infinite}
+@keyframes hintPulse{0%,100%{opacity:0.25}50%{opacity:0.6}}
 </style>
 </head>
 <body>
 
-<!-- ════════ 1. 封面 ════════ -->
+<!-- ═══════ 1. 封面 ═══════ -->
 <div class="slide active" id="s1">
   <div class="bg-anim"></div>
-  <div class="deco" style="width:600px;height:600px;background:radial-gradient(circle,rgba(0,87,217,0.28),transparent 70%);top:-150px;right:-100px"></div>
-  <div class="deco" style="width:400px;height:400px;background:radial-gradient(circle,rgba(0,170,255,0.18),transparent 70%);bottom:-80px;left:-80px"></div>
+  <div class="deco" style="width:600px;height:600px;background:radial-gradient(circle,rgba(0,87,217,0.3),transparent 70%);top:-150px;right:-100px"></div>
+  <div class="deco" style="width:400px;height:400px;background:radial-gradient(circle,rgba(0,170,255,0.2),transparent 70%);bottom:-80px;left:-80px"></div>
   <div class="content" style="align-items:center;text-align:center">
     <div class="label anim">第十六届三创赛 · 创业计划书</div>
-    <h1 class="title anim a1" style="font-size:clamp(58px,8vw,96px);letter-spacing:-4px">
+    <h1 class="title anim a1" style="font-size:clamp(52px,7.5vw,88px);letter-spacing:-4px">
       智水<span>清源</span>
     </h1>
-    <p class="sub anim a2" style="text-align:center">一站式泳池智能清洁方案<br>硬件 · 云平台 · 全周期服务</p>
-    <div class="stats-row anim a3" style="justify-content:center;margin-top:10px">
+    <p class="sub anim a2" style="text-align:center">一站式泳池智能清洁方案<br>智能硬件 · 云端平台 · 全周期服务</p>
+    <div class="stats-row anim a3" style="justify-content:center;margin-top:8px">
       <div class="stat-card"><div class="stat-num">¥380亿</div><div class="stat-label">市场规模</div></div>
-      <div class="stat-card"><div class="stat-num">24%</div><div class="stat-label">CAGR增长</div></div>
-      <div class="stat-card"><div class="stat-num">3合1</div><div class="stat-label">传感器融合</div></div>
+      <div class="stat-card"><div class="stat-num">24%</div><div class="stat-label">CAGR增速</div></div>
+      <div class="stat-card"><div class="stat-num">8L</div><div class="stat-label">垃圾容量</div></div>
+      <div class="stat-card"><div class="stat-num">13.5W</div><div class="stat-label">太阳能</div></div>
     </div>
-    <div class="anim a4" style="margin-top:50px;font-size:11px;color:rgba(255,255,255,0.3)">
+    <div class="anim a4" style="margin-top:48px;font-size:11px;color:rgba(255,255,255,0.3)">
       沭波特智能科技（深圳）有限公司 · 2026
     </div>
   </div>
 </div>
 
-<!-- ════════ 2. 业务闭环 ════════ -->
+<!-- ═══════ 2. 目录 ═══════ -->
 <div class="slide" id="s2">
-  <div class="bg-dark"></div>
-  <div class="deco" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,87,217,0.22),transparent 70%);top:-100px;right:-50px"></div>
-  <div class="content">
-    <div class="label anim">BUSINESS MODEL</div>
-    <h2 class="title anim a1">核心业务闭环</h2>
-    <p class="sub anim a2">智能硬件为入口 · 云端平台为枢纽 · 全周期服务为产出</p>
-    <div class="flow anim a3">
-      <div class="flow-item">
-        <div style="font-size:28px">🤖</div>
-        <div style="font-size:12px;font-weight:700;color:var(--text);margin-top:6px">智能机器人</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:3px">清洁·监测·投药</div>
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-item">
-        <div style="font-size:28px">📊</div>
-        <div style="font-size:12px;font-weight:700;color:var(--text);margin-top:6px">云端平台</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:3px">水质数据·AI分析</div>
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-item">
-        <div style="font-size:28px">👤</div>
-        <div style="font-size:12px;font-weight:700;color:var(--text);margin-top:6px">用户APP</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:3px">实时监控·一键预约</div>
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-item">
-        <div style="font-size:28px">🔧</div>
-        <div style="font-size:12px;font-weight:700;color:var(--text);margin-top:6px">上门服务</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:3px">深度清洁·耗材补给</div>
-      </div>
-    </div>
-    <div class="grid-3 anim a4" style="margin-top:28px">
-      <div class="card" style="text-align:center">
-        <div class="card-num">¥8,800</div>
-        <div class="card-title" style="margin-top:6px">硬件销售</div>
-        <div class="card-text">Nereus-S1 机器人本体</div>
-      </div>
-      <div class="card" style="text-align:center">
-        <div class="card-num">¥499/年</div>
-        <div class="card-title" style="margin-top:6px">订阅服务</div>
-        <div class="card-text">云端管家·AI水质周报</div>
-      </div>
-      <div class="card" style="text-align:center">
-        <div class="card-num">¥1,899/季</div>
-        <div class="card-title" style="margin-top:6px">上门服务</div>
-        <div class="card-text">深度清洁·药剂补给</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════ 3. 市场 ════════ -->
-<div class="slide" id="s3">
-  <div class="bg-glass"></div>
-  <div class="content">
-    <div class="label label-dark anim">MARKET ANALYSIS</div>
-    <h2 class="title title-dark anim a1">市场规模</h2>
-    <p class="sub sub-dark anim a2">泳池清洁机器人行业快速增长，中国市场处于爆发前夜</p>
-    <!-- 市场规模折线图 -->
-    <div class="chart-wrap anim a3">
-      <div class="chart-title">▲ 中国泳池清洁机器人市场规模（亿美元）</div>
-      <svg viewBox="0 0 800 220" width="100%" style="max-width:820px">
-        <!-- 网格 -->
-        <line x1="50" y1="20" x2="50" y2="180" stroke="#E8EEF8" stroke-width="1"/>
-        <line x1="50" y1="180" x2="760" y2="180" stroke="#E8EEF8" stroke-width="1"/>
-        <line x1="50" y1="60" x2="760" y2="60" stroke="#E8EEF8" stroke-width="0.5" stroke-dasharray="4"/>
-        <line x1="50" y1="100" x2="760" y2="100" stroke="#E8EEF8" stroke-width="0.5" stroke-dasharray="4"/>
-        <line x1="50" y1="140" x2="760" y2="140" stroke="#E8EEF8" stroke-width="0.5" stroke-dasharray="4"/>
-        <!-- Y轴标签 -->
-        <text x="46" y="24" text-anchor="end" font-size="9" fill="#9AA0B4" font-family="PingFang SC">0.20</text>
-        <text x="46" y="64" text-anchor="end" font-size="9" fill="#9AA0B4" font-family="PingFang SC">0.15</text>
-        <text x="46" y="104" text-anchor="end" font-size="9" fill="#9AA0B4" font-family="PingFang SC">0.10</text>
-        <text x="46" y="144" text-anchor="end" font-size="9" fill="#9AA0B4" font-family="PingFang SC">0.05</text>
-        <text x="46" y="184" text-anchor="end" font-size="9" fill="#9AA0B4" font-family="PingFang SC">0</text>
-        <!-- 柱状 -->
-        <rect x="80" y="153" width="42" height="27" rx="4" fill="rgba(0,87,217,0.15)"/>
-        <rect x="140" y="138" width="42" height="42" rx="4" fill="rgba(0,87,217,0.25)"/>
-        <rect x="200" y="120" width="42" height="60" rx="4" fill="rgba(0,87,217,0.35)"/>
-        <rect x="260" y="103" width="42" height="77" rx="4" fill="rgba(0,87,217,0.50)"/>
-        <rect x="320" y="83" width="42" height="97" rx="4" fill="rgba(0,87,217,0.65)"/>
-        <!-- 折线点 -->
-        <polyline points="101,131 161,113 221,93 281,78 341,58" fill="none" stroke="#0057D9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="101" cy="131" r="5" fill="#0057D9"/>
-        <circle cx="161" cy="113" r="5" fill="#0057D9"/>
-        <circle cx="221" cy="93" r="5" fill="#0057D9"/>
-        <circle cx="281" cy="78" r="5" fill="#0057D9"/>
-        <circle cx="341" cy="58" r="5" fill="#0077FF"/>
-        <!-- 数值标签 -->
-        <text x="101" y="122" text-anchor="middle" font-size="9" fill="#0057D9" font-weight="700" font-family="PingFang SC">0.03</text>
-        <text x="161" y="104" text-anchor="middle" font-size="9" fill="#0057D9" font-weight="700" font-family="PingFang SC">0.05</text>
-        <text x="221" y="84" text-anchor="middle" font-size="9" fill="#0057D9" font-weight="700" font-family="PingFang SC">0.08</text>
-        <text x="281" y="69" text-anchor="middle" font-size="9" fill="#0057D9" font-weight="700" font-family="PingFang SC">0.12</text>
-        <text x="341" y="49" text-anchor="middle" font-size="9" fill="#0077FF" font-weight="700" font-family="PingFang SC">0.18</text>
-        <!-- X轴标签 -->
-        <text x="101" y="198" text-anchor="middle" font-size="10" fill="#5A6178" font-family="PingFang SC">2017</text>
-        <text x="161" y="198" text-anchor="middle" font-size="10" fill="#5A6178" font-family="PingFang SC">2019</text>
-        <text x="221" y="198" text-anchor="middle" font-size="10" fill="#5A6178" font-family="PingFang SC">2021</text>
-        <text x="281" y="198" text-anchor="middle" font-size="10" fill="#5A6178" font-family="PingFang SC">2024</text>
-        <text x="341" y="198" text-anchor="middle" font-size="10" fill="#0077FF" font-weight="700" font-family="PingFang SC">2026E</text>
-        <!-- 注释 -->
-        <text x="361" y="50" font-size="9" fill="#34C759" font-family="PingFang SC" font-weight="700">+17.7% CAGR ↑</text>
-      </svg>
-    </div>
-    <!-- 渗透率对比 -->
-    <div class="grid-4 anim a4" style="margin-top:20px">
-      <div class="card" style="text-align:center">
-        <div style="font-size:28px;font-weight:900;background:linear-gradient(120deg,#FF3B30,#FF6B6B);-webkit-background-clip:text;-webkit-text-fill-color:transparent">6%</div>
-        <div style="font-size:10px;color:var(--text3);margin-top:4px">中国当前</div>
-      </div>
-      <div class="card" style="text-align:center">
-        <div style="font-size:28px;font-weight:900;background:linear-gradient(120deg,#34C759,#30D0A0);-webkit-background-clip:text;-webkit-text-fill-color:transparent">34.7%</div>
-        <div style="font-size:10px;color:var(--text3);margin-top:4px">美国</div>
-      </div>
-      <div class="card" style="text-align:center">
-        <div style="font-size:28px;font-weight:900;background:linear-gradient(120deg,#34C759,#30D0A0);-webkit-background-clip:text;-webkit-text-fill-color:transparent">30.9%</div>
-        <div style="font-size:10px;color:var(--text3);margin-top:4px">欧洲</div>
-      </div>
-      <div class="card" style="text-align:center">
-        <div style="font-size:28px;font-weight:900;background:linear-gradient(120deg,#34C759,#30D0A0);-webkit-background-clip:text;-webkit-text-fill-color:transparent">30%</div>
-        <div style="font-size:10px;color:var(--text3);margin-top:4px">澳大利亚</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════ 4. STP ════════ -->
-<div class="slide" id="s4">
-  <div class="bg-blue"></div>
-  <div class="deco" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,170,255,0.18),transparent 70%);bottom:-80px;right:-50px"></div>
-  <div class="content">
-    <div class="label anim">STP ANALYSIS</div>
-    <h2 class="title anim a1">市场细分与定位</h2>
-    <div class="grid-3 anim a3" style="margin-top:16px">
-      <div class="card-blue" style="border:1px solid rgba(255,255,255,0.15)">
-        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-bottom:10px">地域</div>
-        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:8px">华东 & 华南</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.7">占全国泳池清洁设备市场 <b style="color:#00AAFF">68%</b><br>高端住宅配套率 >75%<br>经济发达·需求旺盛</div>
-      </div>
-      <div class="card-blue" style="border:1px solid rgba(255,255,255,0.15)">
-        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-bottom:10px">消费场景</div>
-        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:8px">商业泳池（首要）</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.7">全国 <b style="color:#00AAFF">30万座</b><br>人工成本占比 >60%<br>降本增效需求刚性</div>
-      </div>
-      <div class="card-blue" style="border:1px solid rgba(255,255,255,0.15)">
-        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:1px;margin-bottom:10px">用户画像</div>
-        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:8px">高端私家泳池（主要）</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.55);line-height:1.7"><b style="color:#00AAFF">72%</b> 用户愿支付溢价<br>注重便捷性·清洁品质<br>价格敏感度低</div>
-      </div>
-    </div>
-    <!-- 渗透率目标 -->
-    <div class="chart-wrap anim a4" style="margin-top:20px">
-      <div class="chart-title" style="color:rgba(255,255,255,0.5)">▲ 渗透率提升路径预测（中国）</div>
-      <svg viewBox="0 0 800 140" width="100%" style="max-width:820px">
-        <line x1="60" y1="20" x2="60" y2="120" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-        <line x1="60" y1="120" x2="760" y2="120" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-        <line x1="60" y1="20" x2="760" y2="20" stroke="rgba(255,255,255,0.06)" stroke-width="0.5" stroke-dasharray="4"/>
-        <line x1="60" y1="60" x2="760" y2="60" stroke="rgba(255,255,255,0.06)" stroke-width="0.5" stroke-dasharray="4"/>
-        <!-- 渐变填充区域 -->
-        <defs>
-          <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#0077FF" stop-opacity="0.3"/>
-            <stop offset="100%" stop-color="#0077FF" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <path d="M60,117 L200,117 L300,100 L400,78 L500,58 L600,38 L760,18 L760,120 L60,120 Z" fill="url(#areaGrad)"/>
-        <polyline points="60,117 200,117 300,100 400,78 500,58 600,38 760,18" fill="none" stroke="#00AAFF" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="60" cy="117" r="4" fill="#0057D9"/>
-        <circle cx="300" cy="100" r="4" fill="#0057D9"/>
-        <circle cx="500" cy="58" r="4" fill="#0077FF"/>
-        <circle cx="760" cy="18" r="5" fill="#00AAFF"/>
-        <text x="60" y="133" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.45)" font-family="PingFang SC">2021</text>
-        <text x="300" y="133" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.45)" font-family="PingFang SC">2024</text>
-        <text x="500" y="133" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.45)" font-family="PingFang SC">2027</text>
-        <text x="760" y="133" text-anchor="middle" font-size="9" fill="#00AAFF" font-weight="700" font-family="PingFang SC">2030</text>
-        <text x="300" y="92" text-anchor="middle" font-size="9" fill="#fff" font-weight="700" font-family="PingFang SC">12%</text>
-        <text x="500" y="50" text-anchor="middle" font-size="9" fill="#fff" font-weight="700" font-family="PingFang SC">20%</text>
-        <text x="760" y="10" text-anchor="middle" font-size="9" fill="#00AAFF" font-weight="700" font-family="PingFang SC">35%</text>
-        <text x="400" y="8" font-size="9" fill="#34C759" font-family="PingFang SC" font-weight="700">目标 15% ↑</text>
-      </svg>
-    </div>
-  </div>
-</div>
-
-<!-- ════════ 5. 竞争分析 ════════ -->
-<div class="slide" id="s5">
-  <div class="bg-glass"></div>
-  <div class="content">
-    <div class="label label-dark anim">COMPETITION</div>
-    <h2 class="title title-dark anim a1">竞争分析</h2>
-    <p class="sub sub-dark anim a2">三大壁垒，构建难以复制的护城河</p>
-    <!-- 竞争者对比图 -->
-    <div class="chart-wrap anim a3">
-      <div class="chart-title">▲ 竞品功能对比</div>
-      <svg viewBox="0 0 820 200" width="100%" style="max-width:820px">
-        <!-- 表头 -->
-        <rect x="0" y="0" width="820" height="32" rx="8" fill="#003399"/>
-        <text x="140" y="21" text-anchor="middle" font-size="10" fill="#fff" font-weight="700" font-family="PingFang SC">清洁能力</text>
-        <text x="280" y="21" text-anchor="middle" font-size="10" fill="#fff" font-weight="700" font-family="PingFang SC">水质监测</text>
-        <text x="420" y="21" text-anchor="middle" font-size="10" fill="#fff" font-weight="700" font-family="PingFang SC">太阳能</text>
-        <text x="560" y="21" text-anchor="middle" font-size="10" fill="#fff" font-weight="700" font-family="PingFang SC">订阅服务</text>
-        <text x="700" y="21" text-anchor="middle" font-size="10" fill="#fff" font-weight="700" font-family="PingFang SC">综合评分</text>
-        <!-- Maytronics -->
-        <rect x="0" y="38" width="820" height="44" rx="0" fill="rgba(0,87,217,0.05)"/>
-        <text x="14" y="64" font-size="11" fill="#1A1A2E" font-weight="600" font-family="PingFang SC">Maytronics</text>
-        <text x="140" y="64" text-anchor="middle" font-size="14">★★★★</text>
-        <text x="280" y="64" text-anchor="middle" font-size="14">★★</text>
-        <text x="420" y="64" text-anchor="middle" font-size="14">—</text>
-        <text x="560" y="64" text-anchor="middle" font-size="14">—</text>
-        <rect x="660" y="48" width="120" height="24" rx="12" fill="rgba(0,87,217,0.12)"/>
-        <text x="720" y="65" text-anchor="middle" font-size="12" fill="#0057D9" font-weight="700" font-family="PingFang SC">68分</text>
-        <!-- Fluidra -->
-        <rect x="0" y="82" width="820" height="44" fill="rgba(0,87,217,0.03)"/>
-        <text x="14" y="108" font-size="11" fill="#1A1A2E" font-weight="600" font-family="PingFang SC">Fluidra</text>
-        <text x="140" y="108" text-anchor="middle" font-size="14">★★★★</text>
-        <text x="280" y="108" text-anchor="middle" font-size="14">★★</text>
-        <text x="420" y="108" text-anchor="middle" font-size="14">★★</text>
-        <text x="560" y="108" text-anchor="middle" font-size="14">—</text>
-        <rect x="660" y="92" width="120" height="24" rx="12" fill="rgba(0,87,217,0.12)"/>
-        <text x="720" y="109" text-anchor="middle" font-size="12" fill="#0057D9" font-weight="700" font-family="PingFang SC">72分</text>
-        <!-- 智水清源 -->
-        <rect x="0" y="126" width="820" height="52" rx="0" fill="rgba(0,119,255,0.08)"/>
-        <rect x="0" y="126" width="6" height="52" rx="3" fill="#0057D9"/>
-        <text x="14" y="155" font-size="12" fill="#0057D9" font-weight="800" font-family="PingFang SC">智水清源 ⭐</text>
-        <text x="140" y="155" text-anchor="middle" font-size="14">★★★★</text>
-        <text x="280" y="155" text-anchor="middle" font-size="14">★★★★</text>
-        <text x="420" y="155" text-anchor="middle" font-size="14">★★★★</text>
-        <text x="560" y="155" text-anchor="middle" font-size="14">★★★★</text>
-        <rect x="660" y="136" width="120" height="32" rx="16" fill="#0057D9"/>
-        <text x="720" y="157" text-anchor="middle" font-size="13" fill="#fff" font-weight="800" font-family="PingFang SC">95分</text>
-      </svg>
-    </div>
-    <!-- SWOT -->
-    <div class="swot anim a4" style="margin-top:20px">
-      <div class="swot-item swot-s">
-        <div class="swot-label">S 优势</div>
-        <div class="swot-items">三重传感器融合<br>硬件+平台+服务闭环<br>订阅制锁定用户</div>
-      </div>
-      <div class="swot-item swot-w">
-        <div class="swot-label">W 劣势</div>
-        <div class="swot-items">品牌认知度低<br>量产经验不足<br>初期渠道有限</div>
-      </div>
-      <div class="swot-item swot-o">
-        <div class="swot-label">O 机会</div>
-        <div class="swot-items">中国渗透率仅6%<br>政策支持智能家居<br>ESG零碳趋势</div>
-      </div>
-      <div class="swot-item swot-t">
-        <div class="swot-label">T 威胁</div>
-        <div class="swot-items">国际巨头先发优势<br>价格战风险<br>技术迭代加速</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════════ 6. 产品技术 ════════ -->
-<div class="slide" id="s6">
   <div class="bg-dark"></div>
   <div class="deco" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,87,217,0.25),transparent 70%);top:-100px;right:-50px"></div>
   <div class="content">
-    <div class="label anim">PRODUCT</div>
-    <h2 class="title anim a1">产品核心能力</h2>
-    <div class="grid-3 anim a3" style="margin-top:12px">
-      <div class="card-blue">
-        <div style="font-size:28px;margin-bottom:10px">🤖</div>
-        <div class="card-title">全域表面清洁</div>
-        <div class="card-text">0.1mm级细尘·8L大容量垃圾篮<br>GPS+惯导+超声波三重导航</div>
-        <div style="margin-top:10px;font-size:10px;color:#34C759;font-weight:700">行业领先 ↑</div>
-      </div>
-      <div class="card-blue">
-        <div style="font-size:28px;margin-bottom:10px">💧</div>
-        <div class="card-title">实时水质监测</div>
-        <div class="card-text">pH·余氯·浊度三合一传感器<br>24h云端同步·异常告警推送</div>
-        <div style="margin-top:10px;font-size:10px;color:#34C759;font-weight:700">实时 24/7 ↑</div>
-      </div>
-      <div class="card-blue">
-        <div style="font-size:28px;margin-bottom:10px">💊</div>
-        <div class="card-title">智能精准投药</div>
-        <div class="card-text">药剂槽自动全域投药消毒<br>维持pH稳定·减少药剂浪费60%</div>
-        <div style="margin-top:10px;font-size:10px;color:#34C759;font-weight:700">节省60%药剂 ↑</div>
-      </div>
-    </div>
-    <!-- 参数 -->
-    <div class="grid-4 anim a4" style="margin-top:16px">
-      <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.1)">
-        <div style="font-size:26px;font-weight:900;color:#fff;letter-spacing:-2px">8L</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px">垃圾篮容量</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.1)">
-        <div style="font-size:26px;font-weight:900;color:#fff;letter-spacing:-2px">13.5W</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px">太阳能功率</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.1)">
-        <div style="font-size:26px;font-weight:900;color:#fff;letter-spacing:-2px">IP68</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px">防水等级</div>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.1)">
-        <div style="font-size:26px;font-weight:900;color:#fff;letter-spacing:-2px">蓝牙</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px">APP远程控制</div>
-      </div>
+    <div class="label anim">CONTENTS</div>
+    <h2 class="title anim a1" style="margin-bottom:24px">目录</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px" class="anim a2">
+      <div class="card-blue" style="text-align:center;padding:16px"><div style="font-size:20px;font-weight:900;color:var(--blue-light)">01</div><div style="font-size:12px;font-weight:700;color:#fff;margin-top:6px">痛点</div><div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px">市场现状</div></div>
+      <div class="card-blue" style="text-align:center;padding:16px"><div style="font-size:20px;font-weight:900;color:var(--blue-light)">02</div><div style="font-size:12px;font-weight:700;color:#fff;margin-top:6px">方案</div><div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px">解决方案</div></div>
+      <div class="card-blue" style="text-align:center;padding:16px"><div style="font-size:20px;font-weight:900;color:var(--blue-light)">03</div><div style="font-size:12px;font-weight:700;color:#fff;margin-top:6px">技术</div><div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px">核心能力</div></div>
+      <div class="card-blue" style="text-align:center;padding:16px"><div style="font-size:20px;font-weight:900;color:var(--blue-light)">04</div><div style="font-size:12px;font-weight:700;color:#fff;margin-top:6px">产品</div><div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px">APP与平台</div></div>
+      <div class="card-blue" style="text-align:center;padding:16px"><div style="font-size:20px;font-weight:900;color:var(--blue-light)">05</div><div style="font-size:12px;font-weight:700;color:#fff;margin-top:6px">市场</div><div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px">规模与STP</div></div>
+      <div class="card-blue" style="text-align:center;padding:16px"><div style="font-size:20px;font-weight:900;color:var(--blue-light)">06</div><div style="font-size:12px;font-weight:700;color:#fff;margin-top:6px">竞争</div><div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px">壁垒分析</div></div>
+      <div class="card-blue" style="text-align:center;padding:16px"><div style="font-size:20px;font-weight:900;color:var(--blue-light)">07</div><div style="font-size:12px;font-weight:700;color:#fff;margin-top:6px">财务</div><div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px">规划预测</div></div>
+      <div class="card-blue" style="text-align:center;padding:16px"><div style="font-size:20px;font-weight:900;color:var(--blue-light)">08</div><div style="font-size:12px;font-weight:700;color:#fff;margin-top:6px">团队</div><div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px">成员介绍</div></div>
     </div>
   </div>
 </div>
 
-<!-- ════════ 7. 财务预测 ════════ -->
-<div class="slide" id="s7">
+<!-- ═══════ 3. 痛点 ═══════ -->
+<div class="slide" id="s3">
   <div class="bg-glass"></div>
-  <div class="content">
-    <div class="label label-dark anim">FINANCIAL PLAN</div>
-    <h2 class="title title-dark anim a1">财务规划与预测</h2>
-    <!-- 收入预测图 -->
-    <div class="chart-wrap anim a3">
-      <div class="chart-title">▲ 营业收入预测（万元）</div>
-      <svg viewBox="0 0 820 180" width="100%" style="max-width:820px">
-        <!-- 网格 -->
-        <line x1="50" y1="15" x2="50" y2="155" stroke="#E8EEF8" stroke-width="1"/>
-        <line x1="50" y1="155" x2="780" y2="155" stroke="#E8EEF8" stroke-width="1"/>
-        <line x1="50" y1="55" x2="780" y2="55" stroke="#E8EEF8" stroke-width="0.5" stroke-dasharray="4"/>
-        <line x1="50" y1="95" x2="780" y2="95" stroke="#E8EEF8" stroke-width="0.5" stroke-dasharray="4"/>
-        <line x1="50" y1="15" x2="780" y2="15" stroke="#E8EEF8" stroke-width="0.5" stroke-dasharray="4"/>
-        <!-- Y轴 -->
-        <text x="46" y="19" text-anchor="end" font-size="9" fill="#9AA0B4" font-family="PingFang SC">5000</text>
-        <text x="46" y="59" text-anchor="end" font-size="9" fill="#9AA0B4" font-family="PingFang SC">3000</text>
-        <text x="46" y="99" text-anchor="end" font-size="9" fill="#9AA0B4" font-family="PingFang SC">1000</text>
-        <text x="46" y="159" text-anchor="end" font-size="9" fill="#9AA0B4" font-family="PingFang SC">0</text>
-        <!-- 柱状 -->
-        <rect x="90" y="146" width="55" height="9" rx="3" fill="rgba(0,87,217,0.2)"/>
-        <rect x="210" y="128" width="55" height="27" rx="3" fill="rgba(0,87,217,0.35)"/>
-        <rect x="330" y="102" width="55" height="53" rx="3" fill="rgba(0,87,217,0.55)"/>
-        <rect x="450" y="74" width="55" height="81" rx="3" fill="rgba(0,119,255,0.75)"/>
-        <rect x="570" y="52" width="55" height="103" rx="3" fill="#0077FF"/>
-        <rect x="690" y="30" width="55" height="125" rx="3" fill="#0057D9"/>
-        <!-- 数值 -->
-        <text x="117" y="139" text-anchor="middle" font-size="9" fill="#0057D9" font-weight="700" font-family="PingFang SC">50</text>
-        <text x="237" y="121" text-anchor="middle" font-size="9" fill="#0057D9" font-weight="700" font-family="PingFang SC">150</text>
-        <text x="357" y="95" text-anchor="middle" font-size="9" fill="#0057D9" font-weight="700" font-family="PingFang SC">300</text>
-        <text x="477" y="67" text-anchor="middle" font-size="9" fill="#0077FF" font-weight="700" font-family="PingFang SC">800</text>
-        <text x="597" y="45" text-anchor="middle" font-size="9" fill="#0057D9" font-weight="700" font-family="PingFang SC">1500</text>
-        <text x="717" y="23" text-anchor="middle" font-size="9" fill="#003399" font-weight="700" font-family="PingFang SC">3000</text>
-        <!-- X轴 -->
-        <text x="117" y="173" text-anchor="middle" font-size="10" fill="#5A6178" font-family="PingFang SC">2026</text>
-        <text x="237" y="173" text-anchor="middle" font-size="10" fill="#5A6178" font-family="PingFang SC">2027</text>
-        <text x="357" y="173" text-anchor="middle" font-size="10" fill="#5A6178" font-family="PingFang SC">2028</text>
-        <text x="477" y="173" text-anchor="middle" font-size="10" fill="#0077FF" font-weight="700" font-family="PingFang SC">2029</text>
-        <text x="597" y="173" text-anchor="middle" font-size="10" fill="#0077FF" font-weight="700" font-family="PingFang SC">2030</text>
-        <text x="717" y="173" text-anchor="middle" font-size="10" fill="#003399" font-weight="700" font-family="PingFang SC">2031</text>
-        <!-- 盈亏平衡线 -->
-        <line x1="50" y1="140" x2="780" y2="140" stroke="#FF9500" stroke-width="1.5" stroke-dasharray="6"/>
-        <text x="780" y="137" text-anchor="end" font-size="9" fill="#FF9500" font-family="PingFang SC" font-weight="700">盈亏平衡</text>
+  <div class="content-full">
+    <div class="label label-dark anim">01 · PAIN POINT</div>
+    <h2 class="title title-dark anim a1">市场痛点</h2>
+    <p class="sub sub-dark anim a2">传统泳池清洁面临三大核心挑战，智能化升级迫在眉睫</p>
+    <div class="grid-3 anim a3">
+      <div class="card" style="border-top:3px solid #FF3B30">
+        <div style="font-size:24px;margin-bottom:10px">💸</div>
+        <div class="card-title" style="color:#FF3B30">人工成本高昂</div>
+        <div class="card-text">专业清洁人员月薪 ¥6,000+，旺季人手严重不足。全国公共泳池人工成本年均涨幅 <b style="color:#FF3B30">8-10%</b>。</div>
+        <div style="margin-top:10px;font-size:11px;font-weight:700;color:#FF3B30">↑ 运营压力持续增加</div>
+      </div>
+      <div class="card" style="border-top:3px solid #FF9500">
+        <div style="font-size:24px;margin-bottom:10px">📉</div>
+        <div class="card-title" style="color:#FF9500">清洁效率低下</div>
+        <div class="card-text">有线设备覆盖不均，角落盲区多。0.1mm级细尘传统设备无法处理，维护周期长达数周。</div>
+        <div style="margin-top:10px;font-size:11px;font-weight:700;color:#FF9500">↑ 清洁质量不稳定</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--blue)">
+        <div style="font-size:24px;margin-bottom:10px">⚠️</div>
+        <div class="card-title" style="color:var(--blue)">水质合规风险</div>
+        <div class="card-text">pH/余氯异常靠人工检测，响应滞后。2025年新版国标（GB/T 18204.1）新增军团菌等检测，合规成本陡增。</div>
+        <div style="margin-top:10px;font-size:11px;font-weight:700;color:var(--blue)">↑ 合规风险加剧</div>
+      </div>
+    </div>
+    <div class="anim a4" style="margin-top:20px">
+      <div class="chart-title">▲ 泳池运营成本构成（万元/年）</div>
+      <svg viewBox="0 0 900 160" width="100%" style="max-width:900px">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FF3B30"/>
+            <stop offset="100%" stop-color="#FF6B6B"/>
+          </linearGradient>
+          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#FF9500"/>
+            <stop offset="100%" stop-color="#FFB347"/>
+          </linearGradient>
+          <linearGradient id="g3" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#34C759"/>
+            <stop offset="100%" stop-color="#30D0A0"/>
+          </linearGradient>
+        </defs>
+        <!-- 堆叠条形 -->
+        <!-- 传统方式 -->
+        <text x="8" y="50" font-size="10" fill="#5A6178" font-family="PingFang SC">传统方式</text>
+        <rect x="90" y="32" width="240" height="28" rx="4" fill="url(#g1)"/>
+        <rect x="330" y="32" width="160" height="28" rx="4" fill="url(#g2)"/>
+        <rect x="490" y="32" width="80" height="28" rx="4" fill="url(#g3)"/>
+        <text x="100" y="50" font-size="9" fill="#fff" font-family="PingFang SC" font-weight="600">人力 ¥60万</text>
+        <text x="340" y="50" font-size="9" fill="#fff" font-family="PingFang SC" font-weight="600">水电 ¥30万</text>
+        <text x="500" y="50" font-size="9" fill="#fff" font-family="PingFang SC" font-weight="600">药剂</text>
+        <!-- 智能方式 -->
+        <text x="8" y="95" font-size="10" fill="#5A6178" font-family="PingFang SC">智能方案</text>
+        <rect x="90" y="77" width="80" height="28" rx="4" fill="url(#g1)"/>
+        <rect x="170" y="77" width="60" height="28" rx="4" fill="url(#g2)"/>
+        <rect x="230" y="77" width="60" height="28" rx="4" fill="url(#g3)"/>
+        <text x="100" y="95" font-size="9" fill="#fff" font-family="PingFang SC" font-weight="600">人力 ¥10万</text>
+        <text x="180" y="95" font-size="9" fill="#fff" font-family="PingFang SC" font-weight="600">电费</text>
+        <text x="238" y="95" font-size="9" fill="#fff" font-family="PingFang SC" font-weight="600">药剂↓</text>
+        <!-- 节省标注 -->
+        <line x1="590" y1="46" x2="640" y2="46" stroke="#34C759" stroke-width="1.5"/>
+        <line x1="590" y1="42" x2="590" y2="50" stroke="#34C759" stroke-width="1.5"/>
+        <line x1="640" y1="42" x2="640" y2="50" stroke="#34C759" stroke-width="1.5"/>
+        <text x="618" y="40" text-anchor="middle" font-size="10" fill="#34C759" font-family="PingFang SC" font-weight="700">节省 60%+</text>
+        <!-- 图例 -->
+        <rect x="90" y="125" width="12" height="12" rx="2" fill="url(#g1)"/>
+        <text x="106" y="135" font-size="9" fill="#5A6178" font-family="PingFang SC">人力成本</text>
+        <rect x="170" y="125" width="12" height="12" rx="2" fill="url(#g2)"/>
+        <text x="186" y="135" font-size="9" fill="#5A6178" font-family="PingFang SC">水电费用</text>
+        <rect x="240" y="125" width="12" height="12" rx="2" fill="url(#g3)"/>
+        <text x="256" y="135" font-size="9" fill="#5A6178" font-family="PingFang SC">药剂消耗</text>
       </svg>
     </div>
-    <!-- 关键指标 -->
-    <div class="grid-4 anim a4" style="margin-top:16px">
-      <div class="card" style="text-align:center">
-        <div class="card-num">¥80万</div>
-        <div class="card-title" style="margin-top:6px">启动资金</div>
-        <div class="card-text">人力·研发·营销·运营</div>
+  </div>
+</div>
+
+<!-- ═══════ 4. 解决方案 ═══════ -->
+<div class="slide" id="s4">
+  <div class="bg-anim"></div>
+  <div class="deco" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,170,255,0.2),transparent 70%);bottom:-80px;right:-50px"></div>
+  <div class="content-full">
+    <div class="label anim">02 · SOLUTION</div>
+    <h2 class="title anim a1">解决方案 — Nereus-S1</h2>
+    <p class="sub anim a2">三位一体：清洁机器人 + 云端平台 + 上门服务，构建完整泳池管理闭环</p>
+    <div class="flow anim a3" style="margin-bottom:20px">
+      <div class="flow-step"><div style="font-size:24px">🤖</div><div style="font-size:11px;font-weight:700;color:var(--text);margin-top:4px">清洁机器人</div><div style="font-size:9px;color:var(--text2);margin-top:2px">Nereus-S1</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div style="font-size:24px">📊</div><div style="font-size:11px;font-weight:700;color:var(--text);margin-top:4px">水质数据</div><div style="font-size:9px;color:var(--text2);margin-top:2px">实时采集</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div style="font-size:24px">☁️</div><div style="font-size:11px;font-weight:700;color:var(--text);margin-top:4px">云端分析</div><div style="font-size:9px;color:var(--text2);margin-top:2px">AI算法</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div style="font-size:24px">📱</div><div style="font-size:11px;font-weight:700;color:var(--text);margin-top:4px">APP推送</div><div style="font-size:9px;color:var(--text2);margin-top:2px">异常告警</div></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step"><div style="font-size:24px">🔧</div><div style="font-size:11px;font-weight:700;color:var(--text);margin-top:4px">上门服务</div><div style="font-size:9px;color:var(--text2);margin-top:2px">深度清洁</div></div>
+    </div>
+    <div class="grid-3 anim a4">
+      <div class="card-blue">
+        <div style="font-size:24px;margin-bottom:10px">🤖</div>
+        <div class="card-title">全自动化清洁</div>
+        <div class="card-text">GPS+惯导+超声波三重传感器融合，自动规划全域清洁路径，0.1mm级细尘+落叶全覆盖。8L大容量垃圾篮，远超行业平均5L。</div>
       </div>
-      <div class="card" style="text-align:center">
-        <div class="card-num" style="background:linear-gradient(120deg,#34C759,#30D0A0);-webkit-background-clip:text">¥1亿</div>
-        <div class="card-title" style="margin-top:6px">3年后估值</div>
-        <div class="card-text">B轮前目标</div>
+      <div class="card-blue">
+        <div style="font-size:24px;margin-bottom:10px">💧</div>
+        <div class="card-title">实时水质监测</div>
+        <div class="card-text">pH值（标准7.2-7.8）、余氯（标准1.0-3.0ppm）、浊度（标准<0.5NTU）三合一传感器，24h云端同步，异常实时告警。</div>
       </div>
-      <div class="card" style="text-align:center">
-        <div class="card-num">¥800万</div>
-        <div class="card-title" style="margin-top:6px">累计融资目标</div>
-        <div class="card-text">种子轮 + A轮</div>
+      <div class="card-blue">
+        <div style="font-size:24px;margin-bottom:10px">💊</div>
+        <div class="card-title">智能精准投药</div>
+        <div class="card-text">装配药剂槽，自动根据水质数据计算投药量，维持pH稳定。减少药剂浪费60%，降低水质安全事故风险。</div>
       </div>
-      <div class="card" style="text-align:center">
-        <div class="card-num">首年</div>
-        <div class="card-title" style="margin-top:6px">盈亏平衡</div>
-        <div class="card-text">订阅+服务稳定现金流</div>
+    </div>
+    <div class="grid-3 anim a5" style="margin-top:14px">
+      <div class="card-blue">
+        <div style="font-size:24px;margin-bottom:10px">☀️</div>
+        <div class="card-title">太阳能+充电双模</div>
+        <div class="card-text">13.5W高效太阳能板 + 充电双模式，IP68防水等级，户外续航持久。</div>
+      </div>
+      <div class="card-blue">
+        <div style="font-size:24px;margin-bottom:10px">📱</div>
+        <div class="card-title">APP远程操控</div>
+        <div class="card-text">蓝牙连接，手机控制设备、查看进度、预约服务、购买耗材，一站式搞定。</div>
+      </div>
+      <div class="card-blue">
+        <div style="font-size:24px;margin-bottom:10px">☁️</div>
+        <div class="card-title">云端数据平台</div>
+        <div class="card-text">水质数据实时同步，AI算法分析，生成水质周报，智能提醒落叶季/换季清洁周期。</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ════════ 8. 里程碑 ════════ -->
-<div class="slide" id="s8">
+<!-- ═══════ 5. 技术核心 ═══════ -->
+<div class="slide" id="s5">
   <div class="bg-dark"></div>
-  <div class="deco" style="width:600px;height:600px;background:radial-gradient(circle,rgba(0,87,217,0.25),transparent 70%);top:-150px;right:-100px"></div>
-  <div class="content">
-    <div class="label anim">MILESTONE</div>
-    <h2 class="title anim a1">发展规划</h2>
-    <!-- 时间轴 -->
-    <div class="anim a3" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;max-width:920px">
-      <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:18px 14px;border:1px solid rgba(255,255,255,0.1)">
-        <div style="font-size:22px;font-weight:900;color:#00AAFF;letter-spacing:-1px">2026 Q2</div>
-        <div style="font-size:12px;font-weight:700;color:#fff;margin:8px 0 4px">产品量产</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.5);line-height:1.6">500台小批量<br>建立供应链</div>
-        <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">
-          <span style="background:rgba(0,119,255,0.2);color:#00AAFF;font-size:9px;padding:2px 7px;border-radius:10px">量产</span>
+  <div class="deco" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,87,217,0.25),transparent 70%);top:-100px;right:-50px"></div>
+  <div class="content-full">
+    <div class="label anim">03 · TECHNOLOGY</div>
+    <h2 class="title anim a1">核心技术</h2>
+    <p class="sub anim a2">三大技术壁垒，构建行业领先的竞争护城河</p>
+    <div class="grid-2 anim a3">
+      <!-- 左侧：传感器融合 -->
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--blue-light);margin-bottom:12px;letter-spacing:1px">三重传感器融合导航</div>
+        <svg viewBox="0 0 400 240" width="100%" style="max-width:400px">
+          <!-- 中心圆 -->
+          <circle cx="200" cy="120" r="40" fill="rgba(0,119,255,0.15)" stroke="#0057D9" stroke-width="2"/>
+          <text x="200" y="116" text-anchor="middle" font-size="10" fill="#fff" font-family="PingFang SC" font-weight="700">Nereus-S1</text>
+          <text x="200" y="130" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.5)" font-family="PingFang SC">机器人本体</text>
+          <!-- GPS -->
+          <circle cx="200" cy="28" r="28" fill="rgba(0,87,217,0.2)" stroke="#0077FF" stroke-width="1.5"/>
+          <text x="200" y="24" text-anchor="middle" font-size="8" fill="#fff" font-family="PingFang SC" font-weight="600">GPS</text>
+          <text x="200" y="35" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="PingFang SC">±1m定位</text>
+          <line x1="200" y1="56" x2="200" y2="80" stroke="#0077FF" stroke-width="1.5" stroke-dasharray="4"/>
+          <!-- 惯导 -->
+          <circle cx="56" cy="170" r="28" fill="rgba(0,170,255,0.2)" stroke="#00AAFF" stroke-width="1.5"/>
+          <text x="56" y="166" text-anchor="middle" font-size="8" fill="#fff" font-family="PingFang SC" font-weight="600">惯导 IMU</text>
+          <text x="56" y="177" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="PingFang SC">姿态检测</text>
+          <line x1="84" y1="155" x2="160" y2="120" stroke="#00AAFF" stroke-width="1.5" stroke-dasharray="4"/>
+          <!-- 超声波 -->
+          <circle cx="344" cy="170" r="28" fill="rgba(0,170,255,0.2)" stroke="#00AAFF" stroke-width="1.5"/>
+          <text x="344" y="166" text-anchor="middle" font-size="8" fill="#fff" font-family="PingFang SC" font-weight="600">超声波</text>
+          <text x="344" y="177" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="PingFang SC">壁障测距</text>
+          <line x1="316" y1="155" x2="240" y2="120" stroke="#00AAFF" stroke-width="1.5" stroke-dasharray="4"/>
+          <!-- 数据融合 -->
+          <circle cx="200" cy="210" r="22" fill="rgba(52,199,89,0.2)" stroke="#34C759" stroke-width="1.5"/>
+          <text x="200" y="206" text-anchor="middle" font-size="8" fill="#fff" font-family="PingFang SC" font-weight="700">SLAM</text>
+          <text x="200" y="217" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="PingFang SC">融合定位</text>
+          <line x1="200" y1="160" x2="200" y2="188" stroke="#34C759" stroke-width="1.5" stroke-dasharray="4"/>
+          <!-- 标注 -->
+          <text x="8" y="20" font-size="8" fill="#00AAFF" font-family="PingFang SC">室外全局定位</text>
+          <text x="8" y="32" font-size="7" fill="rgba(255,255,255,0.4)" font-family="PingFang SC">厘米级精度</text>
+          <text x="270" y="225" font-size="8" fill="#34C759" font-family="PingFang SC">边缘计算</text>
+          <text x="270" y="237" font-size="7" fill="rgba(255,255,255,0.4)" font-family="PingFang SC">实时路径规划</text>
+        </svg>
+      </div>
+      <!-- 右侧：三大技术 -->
+      <div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="card-blue" style="padding:14px 16px">
+            <div style="font-size:11px;font-weight:700;color:var(--blue-light);margin-bottom:6px">① 多传感器数据融合算法</div>
+            <div class="card-text">融合GPS、IMU、超声波多源数据，通过自适应滤波算法消除噪声干扰，实现厘米级定位精度。在阴影区、水下GPS失锁时，惯导数据无缝补充。</div>
+          </div>
+          <div class="card-blue" style="padding:14px 16px">
+            <div style="font-size:11px;font-weight:700;color:var(--blue-light);margin-bottom:6px">② 自适应路径规划</div>
+            <div class="card-text">基于SLAM构建环境地图，采用A* + 动态窗口法（DWA）混合算法，自动规避障碍物，实现100%覆盖率的蛇形遍历路径。</div>
+          </div>
+          <div class="card-blue" style="padding:14px 16px">
+            <div style="font-size:11px;font-weight:700;color:var(--blue-light);margin-bottom:6px">③ 水质AI分析引擎</div>
+            <div class="card-text">基于历史水质数据训练 LSTM 神经网络模型，提前2-4小时预测水质异常趋势，触发预防性清洁提醒，准确率 >87%。</div>
+          </div>
         </div>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:18px 14px;border:1px solid rgba(255,255,255,0.1)">
-        <div style="font-size:22px;font-weight:900;color:#00AAFF;letter-spacing:-1px">2026 Q4</div>
-        <div style="font-size:12px;font-weight:700;color:#fff;margin:8px 0 4px">种子验证</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.5);line-height:1.6">B端30家·C端50台<br>月流水破10万</div>
-        <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">
-          <span style="background:rgba(0,119,255,0.2);color:#00AAFF;font-size:9px;padding:2px 7px;border-radius:10px">验证</span>
-        </div>
-      </div>
-      <div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:18px 14px;border:1px solid rgba(255,255,255,0.1)">
-        <div style="font-size:22px;font-weight:900;color:#00AAFF;letter-spacing:-1px">2027 Q2</div>
-        <div style="font-size:12px;font-weight:700;color:#fff;margin:8px 0 4px">A轮融资</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.5);line-height:1.6">目标500万<br>扩产+市场推广</div>
-        <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">
-          <span style="background:rgba(0,119,255,0.2);color:#00AAFF;font-size:9px;padding:2px 7px;border-radius:10px">融资</span>
-        </div>
-      </div>
-      <div style="background:rgba(0,87,217,0.15);border-radius:14px;padding:18px 14px;border:1px solid rgba(0,119,255,0.3)">
-        <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-1px">2028+</div>
-        <div style="font-size:12px;font-weight:700;color:#fff;margin:8px 0 4px">B端TOP3</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.5);line-height:1.6">年营收破3000万<br>市占率领先</div>
-        <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">
-          <span style="background:#0057D9;color:#fff;font-size:9px;padding:2px 7px;border-radius:10px">扩张</span>
-        </div>
-      </div>
-    </div>
-    <!-- 融资规划 -->
-    <div class="grid-3 anim a4" style="margin-top:20px">
-      <div class="card-blue" style="text-align:center">
-        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:6px">种子轮</div>
-        <div style="font-size:28px;font-weight:900;color:#fff;letter-spacing:-2px">¥200万</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px">产品研发·首批量产</div>
-      </div>
-      <div class="card-blue" style="text-align:center">
-        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:6px">A轮</div>
-        <div style="font-size:28px;font-weight:900;color:#fff;letter-spacing:-2px">¥600万</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px">量产扩产·市场推广</div>
-      </div>
-      <div class="card-blue" style="text-align:center">
-        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:6px">B轮（目标）</div>
-        <div style="font-size:28px;font-weight:900;color:#fff;letter-spacing:-2px">¥2000万</div>
-        <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px">全国渠道·品类扩展</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ════════ 9. 团队 ════════ -->
-<div class="slide" id="s9">
+<!-- ═══════ 6. 产品参数 ═══════ -->
+<div class="slide" id="s6">
   <div class="bg-glass"></div>
-  <div class="content">
-    <div class="label label-dark anim">TEAM</div>
+  <div class="content-full">
+    <div class="label label-dark anim">03 · PRODUCT SPECS</div>
+    <h2 class="title title-dark anim a1">产品规格</h2>
+    <div class="grid-2 anim a3">
+      <!-- 产品参数表 -->
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--text2);margin-bottom:10px;letter-spacing:1px">核心参数</div>
+        <div style="background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)">
+            <div style="background:#EEF6FF;padding:10px 14px;font-size:11px;font-weight:700;color:var(--blue)">参数项</div>
+            <div style="background:#EEF6FF;padding:10px 14px;font-size:11px;font-weight:700;color:var(--blue)">规格值</div>
+            <div style="background:#fff;padding:9px 14px;font-size:11px;color:var(--text2)">垃圾篮容量</div><div style="background:#fff;padding:9px 14px;font-size:11px;font-weight:700;color:var(--text)">8L（行业最高）</div>
+            <div style="background:#f8f9fa;padding:9px 14px;font-size:11px;color:var(--text2)">太阳能功率</div><div style="background:#f8f9fa;padding:9px 14px;font-size:11px;font-weight:700;color:var(--text)">13.5W</div>
+            <div style="background:#fff;padding:9px 14px;font-size:11px;color:var(--text2)">防水等级</div><div style="background:#fff;padding:9px 14px;font-size:11px;font-weight:700;color:var(--text)">IP68</div>
+            <div style="background:#f8f9fa;padding:9px 14px;font-size:11px;color:var(--text2)">通讯方式</div><div style="background:#f8f9fa;padding:9px 14px;font-size:11px;font-weight:700;color:var(--text)">蓝牙 BLE 5.0</div>
+            <div style="background:#fff;padding:9px 14px;font-size:11px;color:var(--text2)">传感器</div><div style="background:#fff;padding:9px 14px;font-size:11px;font-weight:700;color:var(--text)">GPS+IMU+超声波</div>
+            <div style="background:#f8f9fa;padding:9px 14px;font-size:11px;color:var(--text2)">水质监测</div><div style="background:#f8f9fa;padding:9px 14px;font-size:11px;font-weight:700;color:var(--text)">pH+余氯+浊度</div>
+            <div style="background:#fff;padding:9px 14px;font-size:11px;color:var(--text2)">导航精度</div><div style="background:#fff;padding:9px 14px;font-size:11px;font-weight:700;color:var(--text)">±1m</div>
+          </div>
+        </div>
+      </div>
+      <!-- 对比优势 -->
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--text2);margin-bottom:10px;letter-spacing:1px">行业对比优势</div>
+        <svg viewBox="0 0 420 260" width="100%" style="max-width:420px">
+          <!-- Y轴 -->
+          <line x1="50" y1="20" x2="50" y2="210" stroke="#E8EEF8" stroke-width="1"/>
+          <!-- X轴 -->
+          <line x1="50" y1="210" x2="400" y2="210" stroke="#E8EEF8" stroke-width="1"/>
+          <!-- 网格线 -->
+          <line x1="50" y1="75" x2="400" y2="75" stroke="#E8EEF8" stroke-width="0.5" stroke-dasharray="3"/>
+          <line x1="50" y1="120" x2="400" y2="120" stroke="#E8EEF8" stroke-width="0.5" stroke-dasharray="3"/>
+          <line x1="50" y1="165" x2="400" y2="165" stroke="#E8EEF8" stroke-width="0.5" stroke-dasharray="3"/>
+          <!-- Y标签 -->
+          <text x="46" y="24" text-anchor="end" font-size="8" fill="#9AA0B4" font-family="PingFang SC">5</text>
+          <text x="46" y="79" text-anchor="end" font-size="8" fill="#9AA0B4" font-family="PingFang SC">4</text>
+          <text x="46" y="124" text-anchor="end" font-size="8" fill="#9AA0B4" font-family="PingFang SC">3</text>
+          <text x="46" y="169" text-anchor="end" font-size="8" fill="#9AA0B4" font-family="PingFang SC">2</text>
+          <text x="46" y="214" text-anchor="end" font-size="8" fill="#9AA0B4" font-family="PingFang SC">1</text>
+          <!-- 智水清源柱 -->
+          <rect x="80" y="28" width="28" height="182" rx="4" fill="#0057D9"/>
+          <rect x="180" y="55" width="28" height="155" rx="4" fill="#0057D9"/>
+          <rect x="280" y="40" width="28" height="170" rx="4" fill="#0057D9"/>
+          <rect x="380" y="60" width="28" height="150" rx="4" fill="#0057D9"/>
+          <!-- 竞品柱 -->
+          <rect x="108" y="55" width="28" height="155" rx="4" fill="rgba(0,87,217,0.2)"/>
+          <rect x="208" y="95" width="28" height="115" rx="4" fill="rgba(0,87,217,0.2)"/>
+          <rect x="308" y="80" width="28" height="130" rx="4" fill="rgba(0,87,217,0.2)"/>
+          <rect x="408" y="100" width="28" height="110" rx="4" fill="rgba(0,87,217,0.2)"/>
+          <!-- 数值 -->
+          <text x="94" y="22" text-anchor="middle" font-size="8" fill="#fff" font-family="PingFang SC" font-weight="700">5.0</text>
+          <text x="194" y="49" text-anchor="middle" font-size="8" fill="#fff" font-family="PingFang SC" font-weight="700">4.3</text>
+          <text x="294" y="34" text-anchor="middle" font-size="8" fill="#fff" font-family="PingFang SC" font-weight="700">4.7</text>
+          <text x="394" y="54" text-anchor="middle" font-size="8" fill="#fff" font-family="PingFang SC" font-weight="700">4.2</text>
+          <!-- X轴标签 -->
+          <text x="110" y="228" text-anchor="middle" font-size="8" fill="#5A6178" font-family="PingFang SC">清洁力</text>
+          <text x="210" y="228" text-anchor="middle" font-size="8" fill="#5A6178" font-family="PingFang SC">水质监测</text>
+          <text x="310" y="228" text-anchor="middle" font-size="8" fill="#5A6178" font-family="PingFang SC">续航</text>
+          <text x="410" y="228" text-anchor="middle" font-size="8" fill="#5A6178" font-family="PingFang SC">易用性</text>
+          <!-- 图例 -->
+          <rect x="80" y="242" width="12" height="8" rx="2" fill="#0057D9"/>
+          <text x="96" y="249" font-size="8" fill="#5A6178" font-family="PingFang SC">智水清源</text>
+          <rect x="170" y="242" width="12" height="8" rx="2" fill="rgba(0,87,217,0.2)"/>
+          <text x="186" y="249" font-size="8" fill="#5A6178" font-family="PingFang SC">行业平均</text>
+        </svg>
+      </div>
+    </div>
+    <div class="grid-5 anim a4" style="margin-top:16px">
+      <div class="card" style="text-align:center;padding:12px">
+        <div style="font-size:20px;font-weight:900;background:linear-gradient(120deg,var(--blue),var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px">8L</div>
+        <div style="font-size:9px;color:var(--text3);margin-top:3px">垃圾篮容量<br><span style="color:#34C759;font-weight:700">行业最高</span></div>
+      </div>
+      <div class="card" style="text-align:center;padding:12px">
+        <div style="font-size:20px;font-weight:900;background:linear-gradient(120deg,var(--blue),var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px">13.5W</div>
+        <div style="font-size:9px;color:var(--text3);margin-top:3px">太阳能功率<br><span style="color:#34C759;font-weight:700">全天续航</span></div>
+      </div>
+      <div class="card" style="text-align:center;padding:12px">
+        <div style="font-size:20px;font-weight:900;background:linear-gradient(120deg,var(--blue),var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px">3合1</div>
+        <div style="font-size:9px;color:var(--text3);margin-top:3px">传感器融合<br><span style="color:#34C759;font-weight:700">自研算法</span></div>
+      </div>
+      <div class="card" style="text-align:center;padding:12px">
+        <div style="font-size:20px;font-weight:900;background:linear-gradient(120deg,var(--blue),var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px">IP68</div>
+        <div style="font-size:9px;color:var(--text3);margin-top:3px">防水等级<br><span style="color:#34C759;font-weight:700">军工级</span></div>
+      </div>
+      <div class="card" style="text-align:center;padding:12px">
+        <div style="font-size:20px;font-weight:900;background:linear-gradient(120deg,var(--blue),var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px">±1m</div>
+        <div style="font-size:9px;color:var(--text3);margin-top:3px">导航精度<br><span style="color:#34C759;font-weight:700">厘米级</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ 7. 云端平台 ═══════ -->
+<div class="slide" id="s7">
+  <div class="bg-blue"></div>
+  <div class="deco" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,170,255,0.2),transparent 70%);bottom:-80px;right:-50px"></div>
+  <div class="content-full">
+    <div class="label anim">04 · CLOUD PLATFORM</div>
+    <h2 class="title anim a1">云端数据平台</h2>
+    <p class="sub anim a2">水质数据实时同步 · AI算法分析 · 精准提醒推送</p>
+    <div class="grid-2 anim a3">
+      <!-- 平台界面示意 -->
+      <div>
+        <svg viewBox="0 0 380 260" width="100%" style="max-width:380px">
+          <!-- 手机框架 -->
+          <rect x="80" y="0" width="220" height="260" rx="20" fill="#1A1A2E" stroke="#0057D9" stroke-width="2"/>
+          <rect x="90" y="12" width="200" height="236" rx="12" fill="#EEF6FF"/>
+          <!-- 状态栏 -->
+          <text x="190" y="26" text-anchor="middle" font-size="8" fill="#5A6178" font-family="PingFang SC">9:41</text>
+          <!-- 页面标题 -->
+          <rect x="90" y="32" width="200" height="32" rx="8" fill="#0057D9"/>
+          <text x="190" y="51" text-anchor="middle" font-size="10" fill="#fff" font-family="PingFang SC" font-weight="700">水质实时监测</text>
+          <!-- 数据卡片 -->
+          <rect x="98" y="72" width="56" height="44" rx="8" fill="#fff" stroke="#E8EEF8"/>
+          <text x="126" y="90" text-anchor="middle" font-size="14" fill="#0057D9" font-family="PingFang SC" font-weight="800">7.42</text>
+          <text x="126" y="104" text-anchor="middle" font-size="7" fill="#9AA0B4" font-family="PingFang SC">pH值</text>
+          <text x="126" y="113" text-anchor="middle" font-size="6" fill="#34C759" font-family="PingFang SC">✓ 正常</text>
+
+          <rect x="160" y="72" width="56" height="44" rx="8" fill="#fff" stroke="#E8EEF8"/>
+          <text x="188" y="90" text-anchor="middle" font-size="14" fill="#0057D9" font-family="PingFang SC" font-weight="800">1.8</text>
+          <text x="188" y="104" text-anchor="middle" font-size="7" fill="#9AA0B4" font-family="PingFang SC">ppm 余氯</text>
+          <text x="188" y="113" text-anchor="middle" font-size="6" fill="#34C759" font-family="PingFang SC">✓ 正常</text>
+
+          <rect x="222" y="72" width="56" height="44" rx="8" fill="#fff" stroke="#E8EEF8"/>
+          <text x="250" y="90" text-anchor="middle" font-size="14" fill="#0057D9" font-family="PingFang SC" font-weight="800">0.3</text>
+          <text x="250" y="104" text-anchor="middle" font-size="7" fill="#9AA0B4" font-family="PingFang SC">NTU 浊度</text>
+          <text x="250" y="113" text-anchor="middle" font-size="6" fill="#34C759" font-family="PingFang SC">✓ 优秀</text>
+
+          <!-- 综合评分 -->
+          <rect x="98" y="124" width="180" height="50" rx="10" fill="#fff" stroke="#E8EEF8"/>
+          <circle cx="130" cy="149" r="18" fill="none" stroke="#E8EEF8" stroke-width="4"/>
+          <circle cx="130" cy="149" r="18" fill="none" stroke="#0057D9" stroke-width="4" stroke-dasharray="85 113" transform="rotate(-90 130 149)"/>
+          <text x="130" y="146" text-anchor="middle" font-size="9" fill="#0057D9" font-family="PingFang SC" font-weight="800">87</text>
+          <text x="130" y="156" text-anchor="middle" font-size="6" fill="#9AA0B4" font-family="PingFang SC">/100</text>
+          <text x="158" y="146" font-size="10" fill="#1A1A2E" font-family="PingFang SC" font-weight="700">水质综合评分</text>
+          <text x="158" y="158" font-size="8" fill="#34C759" font-family="PingFang SC">水质优良 · 三项指标均在安全范围</text>
+          <!-- 提醒 -->
+          <rect x="98" y="182" width="180" height="30" rx="8" fill="rgba(0,87,217,0.06)" stroke="rgba(0,87,217,0.1)"/>
+          <text x="112" y="198" font-size="8" fill="#0057D9" font-family="PingFang SC">💡 建议清洁：3天后</text>
+          <!-- 底部导航 -->
+          <rect x="90" y="224" width="200" height="24" rx="0" fill="#f8f9fa"/>
+          <circle cx="126" cy="236" r="6" fill="#0057D9"/>
+          <circle cx="166" cy="236" r="5" fill="#E8EEF8"/>
+          <circle cx="206" cy="236" r="5" fill="#E8EEF8"/>
+          <circle cx="246" cy="236" r="5" fill="#E8EEF8"/>
+        </svg>
+      </div>
+      <!-- 平台能力 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="card-blue" style="padding:12px 14px">
+          <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:5px">📊 水质实时监测</div>
+          <div class="card-text">pH · 余氯 · 浊度三合一传感器，24小时云端同步，异常实时告警推送至手机。</div>
+        </div>
+        <div class="card-blue" style="padding:12px 14px">
+          <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:5px">🤖 AI 水质周报</div>
+          <div class="card-text">基于LSTM模型预测水质趋势，提前2-4小时预警。落叶季自动调整清洁频率。</div>
+        </div>
+        <div class="card-blue" style="padding:12px 14px">
+          <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:5px">📅 智能提醒</div>
+          <div class="card-text">浊度>0.5NTU时推送清洁建议；PH偏离7.2-7.8时推送药剂添加提醒（含剂量计算）。</div>
+        </div>
+        <div class="card-blue" style="padding:12px 14px">
+          <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:5px">🛒 一站式服务入口</div>
+          <div class="card-text">设备控制 · 数据查看 · 上门预约 · 耗材购买，四大板块一键切换。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ 8. 市场规模 ═══════ -->
+<div class="slide" id="s8">
+  <div class="bg-glass"></div>
+  <div class="content-full">
+    <div class="label label-dark anim">05 · MARKET</div>
+    <h2 class="title title-dark anim a1">市场规模</h2>
+    <div class="grid-2 anim a3">
+      <!-- 市场规模增长图 -->
+      <div>
+        <div class="chart-title">▲ 中国泳池清洁机器人市场规模（亿美元）</div>
+        <svg viewBox="0 0 440 220" width="100%" style="max-width:440px">
+          <line x1="50" y1="20" x2="50" y2="185" stroke="#E8EEF8"/>
+          <line x1="50" y1="185" x2="420" y2="185" stroke="#E8EEF8"/>
+          <line x1="50" y1="60" x2="420" y2="60" stroke="#E8EEF8" stroke-dasharray="3"/>
+          <line x1="50" y1="100" x2="420" y2="100" stroke="#E8EEF8" stroke-dasharray="3"/>
+          <line x1="50" y1="140" x2="420" y2="140" stroke="#E8EEF8" stroke-dasharray="3"/>
+          <text x="46" y="24" text-anchor="end" font-size="8" fill="#9AA0B4" font-family="PingFang SC">0.20</text>
+          <text x="46" y="64" text-anchor="end" font-size="8" fill="#9AA0B4" font-family="PingFang SC">0.15</text>
+          <text x="46" y="104" text-anchor="end" font-size="8" fill="#9AA0B4" font-family="PingFang SC">0.10</text>
+          <text x="46" y="144" text-anchor="end" font-size="8" fill="#9AA0B4" font-family="PingFang SC">0.05</text>
+          <!-- 柱 -->
+          <rect x="80" y="148" width="35" height="37" rx="4" fill="rgba(0,87,217,0.15)"/>
+          <rect x="150" y="130" width="35" height="55" rx="4" fill="rgba(0,87,217,0.25)"/>
+          <rect x="220" y="108" width="35" height="77" rx="4" fill="rgba(0,87,217,0.4)"/>
+          <rect x="290" y="88" width="35" height="97" rx="4" fill="rgba(0,87,217,0.6)"/>
+          <rect x="360" y="62" width="35" height="123" rx="4" fill="#0057D9"/>
+          <!-- 折线 -->
+          <polyline points="97,135 167,115 237,90 307,72 377,50" fill="none" stroke="#0057D9" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="97" cy="135" r="4" fill="#0057D9"/>
+          <circle cx="167" cy="115" r="4" fill="#0057D9"/>
+          <circle cx="237" cy="90" r="4" fill="#0057D9"/>
+          <circle cx="307" cy="72" r="4" fill="#0057D9"/>
+          <circle cx="377" cy="50" r="5" fill="#0077FF"/>
+          <!-- 数值 -->
+          <text x="97" y="126" text-anchor="middle" font-size="8" fill="#0057D9" font-family="PingFang SC" font-weight="700">0.03</text>
+          <text x="167" y="106" text-anchor="middle" font-size="8" fill="#0057D9" font-family="PingFang SC" font-weight="700">0.05</text>
+          <text x="237" y="81" text-anchor="middle" font-size="8" fill="#0057D9" font-family="PingFang SC" font-weight="700">0.08</text>
+          <text x="307" y="63" text-anchor="middle" font-size="8" fill="#0057D9" font-family="PingFang SC" font-weight="700">0.12</text>
+          <text x="377" y="41" text-anchor="middle" font-size="8" fill="#0077FF" font-family="PingFang SC" font-weight="700">0.18</text>
+          <!-- X轴 -->
+          <text x="97" y="200" text-anchor="middle" font-size="8" fill="#5A6178" font-family="PingFang SC">2017</text>
+          <text x="167" y="200" text-anchor="middle" font-size="8" fill="#5A6178" font-family="PingFang SC">2019</text>
+          <text x="237" y="200" text-anchor="middle" font-size="8" fill="#5A6178" font-family="PingFang SC">2021</text>
+          <text x="307" y="200" text-anchor="middle" font-size="8" fill="#5A6178" font-family="PingFang SC">2024</text>
+          <text x="377" y="200" text-anchor="middle" font-size="8" fill="#0077FF" font-family="PingFang SC" font-weight="700">2026E</text>
+          <text x="390" y="43" font-size="8" fill="#34C759" font-family="PingFang SC" font-weight="700">+24.1% CAGR</text>
+        </svg>
+      </div>
+      <!-- 渗透率对比 -->
+      <div>
+        <div class="chart-title">▲ 渗透率对比（2024）</div>
+        <svg viewBox="0 0 440 220" width="100%" style="max-width:440px">
+          <!-- 条形图 -->
+          <text x="8" y="40" font-size="9" fill="#5A6178" font-family="PingFang SC">中国</text>
+          <rect x="80" y="26" width="55" height="22" rx="4" fill="rgba(255,59,48,0.2)"/>
+          <rect x="80" y="26" width="55" height="22" rx="4" fill="none" stroke="#FF3B30" stroke-width="1"/>
+          <text x="145" y="40" font-size="8" fill="#FF3B30" font-family="PingFang SC" font-weight="700">6.0%</text>
+
+          <text x="8" y="80" font-size="9" fill="#5A6178" font-family="PingFang SC">美国</text>
+          <rect x="80" y="66" width="240" height="22" rx="4" fill="rgba(52,199,89,0.15)"/>
+          <rect x="80" y="66" width="240" height="22" rx="4" fill="none" stroke="#34C759" stroke-width="1"/>
+          <text x="328" y="80" font-size="8" fill="#34C759" font-family="PingFang SC" font-weight="700">34.7%</text>
+
+          <text x="8" y="120" font-size="9" fill="#5A6178" font-family="PingFang SC">欧洲</text>
+          <rect x="80" y="106" width="215" height="22" rx="4" fill="rgba(52,199,89,0.15)"/>
+          <rect x="80" y="106" width="215" height="22" rx="4" fill="none" stroke="#34C759" stroke-width="1"/>
+          <text x="303" y="120" font-size="8" fill="#34C759" font-family="PingFang SC" font-weight="700">30.9%</text>
+
+          <text x="8" y="160" font-size="9" fill="#5A6178" font-family="PingFang SC">澳洲</text>
+          <rect x="80" y="146" width="208" height="22" rx="4" fill="rgba(52,199,89,0.15)"/>
+          <rect x="80" y="146" width="208" height="22" rx="4" fill="none" stroke="#34C759" stroke-width="1"/>
+          <text x="296" y="160" font-size="8" fill="#34C759" font-family="PingFang SC" font-weight="700">30.0%</text>
+
+          <!-- 差距标注 -->
+          <line x1="135" y1="20" x2="135" y2="175" stroke="#FF9500" stroke-width="1" stroke-dasharray="4"/>
+          <text x="137" y="100" font-size="8" fill="#FF9500" font-family="PingFang SC" font-weight="700">差距巨大<br>增长空间显著</text>
+        </svg>
+        <!-- 关键数据 -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+          <div class="card" style="text-align:center;padding:12px">
+            <div style="font-size:20px;font-weight:900;background:linear-gradient(120deg,var(--blue),var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent">¥380亿</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:3px">中国泳池市场（2025）</div>
+          </div>
+          <div class="card" style="text-align:center;padding:12px">
+            <div style="font-size:20px;font-weight:900;background:linear-gradient(120deg,var(--blue),var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent">24.09%</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:3px">CAGR（2017-2021）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ 9. 竞争分析 ═══════ -->
+<div class="slide" id="s9">
+  <div class="bg-anim"></div>
+  <div class="deco" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,170,255,0.2),transparent 70%);bottom:-80px;right:-50px"></div>
+  <div class="content-full">
+    <div class="label anim">06 · COMPETITION</div>
+    <h2 class="title anim a1">竞争分析</h2>
+    <div class="grid-2 anim a3">
+      <!-- 竞品对比表 -->
+      <div>
+        <div class="chart-title" style="color:rgba(255,255,255,0.6)">▲ 竞品功能对比</div>
+        <div style="background:rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.1)">
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,0.05)">
+            <div style="padding:10px 12px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.5)">品牌</div>
+            <div style="padding:10px 12px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-align:center">清洁</div>
+            <div style="padding:10px 12px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-align:center">水质监测</div>
+            <div style="padding:10px 12px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-align:center">太阳能</div>
+            <div style="padding:10px 12px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-align:center">订阅</div>
+            <div style="padding:10px 12px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-align:center">综合</div>
+            <div style="padding:9px 12px;font-size:10px;color:rgba(255,255,255,0.6)">Maytronics</div>
+            <div style="padding:9px 12px;font-size:12px;text-align:center">★★★★</div>
+            <div style="padding:9px 12px;font-size:10px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
+            <div style="padding:9px 12px;font-size:10px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
+            <div style="padding:9px 12px;font-size:10px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
+            <div style="padding:9px 12px;font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-align:center">68</div>
+            <div style="padding:9px 12px;font-size:10px;color:rgba(255,255,255,0.6)">Fluidra</div>
+            <div style="padding:9px 12px;font-size:12px;text-align:center">★★★★</div>
+            <div style="padding:9px 12px;font-size:10px;text-align:center;color:rgba(255,255,255,0.3)">★★</div>
+            <div style="padding:9px 12px;font-size:10px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
+            <div style="padding:9px 12px;font-size:10px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
+            <div style="padding:9px 12px;font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-align:center">72</div>
+            <div style="padding:10px 12px;font-size:10px;font-weight:800;color:#00AAFF;background:rgba(0,87,217,0.1)">智水清源 ⭐</div>
+            <div style="padding:10px 12px;font-size:12px;text-align:center;background:rgba(0,87,217,0.1)">★★★★</div>
+            <div style="padding:10px 12px;font-size:12px;text-align:center;background:rgba(0,87,217,0.1)">★★★★</div>
+            <div style="padding:10px 12px;font-size:12px;text-align:center;background:rgba(0,87,217,0.1)">★★★★</div>
+            <div style="padding:10px 12px;font-size:12px;text-align:center;background:rgba(0,87,217,0.1)">★★★★</div>
+            <div style="padding:10px 12px;font-size:12px;font-weight:800;color:#00AAFF;text-align:center;background:rgba(0,87,217,0.1)">95</div>
+          </div>
+        </div>
+      </div>
+      <!-- SWOT -->
+      <div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="background:rgba(0,87,217,0.1);border-radius:12px;padding:12px;border:1px solid rgba(0,87,217,0.2)">
+            <div style="font-size:10px;font-weight:800;color:var(--blue-light);margin-bottom:6px;letter-spacing:1px">S 优势</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.6);line-height:1.8">三重传感器融合算法<br>硬件+平台+服务闭环<br>订阅制锁定用户<br>零碳ESG差异化</div>
+          </div>
+          <div style="background:rgba(255,59,48,0.08);border-radius:12px;padding:12px;border:1px solid rgba(255,59,48,0.15)">
+            <div style="font-size:10px;font-weight:800;color:#FF6B6B;margin-bottom:6px;letter-spacing:1px">W 劣势</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.6);line-height:1.8">品牌认知度低<br>量产经验不足<br>初期渠道有限</div>
+          </div>
+          <div style="background:rgba(52,199,89,0.08);border-radius:12px;padding:12px;border:1px solid rgba(52,199,89,0.15)">
+            <div style="font-size:10px;font-weight:800;color:#34C759;margin-bottom:6px;letter-spacing:1px">O 机会</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.6);line-height:1.8">中国渗透率仅6%<br>政策支持智能家居<br>ESG零碳趋势<br>2025新国标趋严</div>
+          </div>
+          <div style="background:rgba(255,149,0,0.08);border-radius:12px;padding:12px;border:1px solid rgba(255,149,0,0.15)">
+            <div style="font-size:10px;font-weight:800;color:#FF9500;margin-bottom:6px;letter-spacing:1px">T 威胁</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.6);line-height:1.8">国际巨头先发优势<br>价格战风险<br>技术迭代加速</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ 10. 商业模式 ═══════ -->
+<div class="slide" id="s10">
+  <div class="bg-glass"></div>
+  <div class="content-full">
+    <div class="label label-dark anim">07 · BUSINESS MODEL</div>
+    <h2 class="title title-dark anim a1">商业模式</h2>
+    <p class="sub sub-dark anim a2">硬件 + 订阅 + 服务，复合收入结构</p>
+    <div class="grid-3 anim a3">
+      <div class="card" style="border-top:3px solid var(--blue);text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">🤖</div>
+        <div class="card-title" style="text-align:center">硬件销售</div>
+        <div style="font-size:22px;font-weight:900;background:linear-gradient(120deg,var(--blue),var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px;margin:8px 0">¥8,800</div>
+        <div class="card-text" style="text-align:center">Nereus-S1 机器人本体<br>一次性销售<br>线上+线下渠道</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--blue-mid);text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">☁️</div>
+        <div class="card-title" style="text-align:center">订阅服务</div>
+        <div style="font-size:22px;font-weight:900;background:linear-gradient(120deg,var(--blue),var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px;margin:8px 0">¥499/年</div>
+        <div class="card-text" style="text-align:center">云端管家 + AI水质周报<br>高复购、高毛利<br>现金流稳定</div>
+      </div>
+      <div class="card" style="border-top:3px solid #FF9500;text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">🔧</div>
+        <div class="card-title" style="text-align:center">上门服务+耗材</div>
+        <div style="font-size:22px;font-weight:900;background:linear-gradient(120deg,var(--blue),var(--blue-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px;margin:8px 0">¥1,899/季</div>
+        <div class="card-text" style="text-align:center">深度清洁 + 药剂补给<br>面向B端<br>高客单价</div>
+      </div>
+    </div>
+    <!-- 收入结构图 -->
+    <div class="anim a4" style="margin-top:16px">
+      <div class="chart-title">▲ 收入结构预测（2031年目标）</div>
+      <svg viewBox="0 0 900 160" width="100%" style="max-width:900px">
+        <defs>
+          <linearGradient id="pg1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0057D9"/>
+            <stop offset="100%" stop-color="#0077FF"/>
+          </linearGradient>
+          <linearGradient id="pg2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00AAFF"/>
+            <stop offset="100%" stop-color="#00B4FF"/>
+          </linearGradient>
+          <linearGradient id="pg3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FF9500"/>
+            <stop offset="100%" stop-color="#FFB347"/>
+          </linearGradient>
+        </defs>
+        <!-- 堆叠柱 -->
+        <rect x="60" y="40" width="80" height="60" rx="4" fill="url(#pg1)"/>
+        <rect x="60" y="100" width="80" height="30" rx="4" fill="url(#pg2)"/>
+        <rect x="60" y="130" width="80" height="15" rx="4" fill="url(#pg3)"/>
+
+        <rect x="180" y="20" width="80" height="80" rx="4" fill="url(#pg1)"/>
+        <rect x="180" y="100" width="80" height="30" rx="4" fill="url(#pg2)"/>
+        <rect x="180" y="130" width="80" height="15" rx="4" fill="url(#pg3)"/>
+
+        <rect x="300" y="5" width="80" height="95" rx="4" fill="url(#pg1)"/>
+        <rect x="300" y="100" width="80" height="35" rx="4" fill="url(#pg2)"/>
+        <rect x="300" y="135" width="80" height="10" rx="4" fill="url(#pg3)"/>
+
+        <rect x="420" y="-5" width="80" height="105" rx="4" fill="url(#pg1)"/>
+        <rect x="420" y="100" width="80" height="40" rx="4" fill="url(#pg2)"/>
+        <rect x="420" y="140" width="80" height="5" rx="2" fill="url(#pg3)"/>
+
+        <rect x="540" y="-20" width="80" height="120" rx="4" fill="url(#pg1)"/>
+        <rect x="540" y="100" width="80" height="45" rx="4" fill="url(#pg2)"/>
+        <rect x="540" y="145" width="80" height="5" rx="2" fill="url(#pg3)"/>
+
+        <!-- X轴标签 -->
+        <text x="100" y="160" text-anchor="middle" font-size="9" fill="#5A6178" font-family="PingFang SC">2026</text>
+        <text x="220" y="160" text-anchor="middle" font-size="9" fill="#5A6178" font-family="PingFang SC">2027</text>
+        <text x="340" y="160" text-anchor="middle" font-size="9" fill="#5A6178" font-family="PingFang SC">2028</text>
+        <text x="460" y="160" text-anchor="middle" font-size="9" fill="#0077FF" font-family="PingFang SC" font-weight="700">2029</text>
+        <text x="580" y="160" text-anchor="middle" font-size="9" fill="#0077FF" font-family="PingFang SC" font-weight="700">2030</text>
+        <!-- 图例 -->
+        <rect x="700" y="20" width="12" height="12" rx="2" fill="url(#pg1)"/>
+        <text x="716" y="30" font-size="9" fill="#5A6178" font-family="PingFang SC">硬件销售</text>
+        <rect x="700" y="40" width="12" height="12" rx="2" fill="url(#pg2)"/>
+        <text x="716" y="50" font-size="9" fill="#5A6178" font-family="PingFang SC">订阅服务</text>
+        <rect x="700" y="60" width="12" height="12" rx="2" fill="url(#pg3)"/>
+        <text x="716" y="70" font-size="9" fill="#5A6178" font-family="PingFang SC">上门服务</text>
+        <!-- 预测 -->
+        <text x="100" y="35" text-anchor="middle" font-size="9" fill="#fff" font-family="PingFang SC" font-weight="700">¥50万</text>
+        <text x="220" y="15" text-anchor="middle" font-size="9" fill="#fff" font-family="PingFang SC" font-weight="700">¥150万</text>
+        <text x="340" y="0" text-anchor="middle" font-size="9" fill="#fff" font-family="PingFang SC" font-weight="700">¥300万</text>
+        <text x="460" y="-10" text-anchor="middle" font-size="9" fill="#fff" font-family="PingFang SC" font-weight="700">¥800万</text>
+        <text x="580" y="-25" text-anchor="middle" font-size="9" fill="#fff" font-family="PingFang SC" font-weight="700">¥1500万</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ 11. 财务规划 ═══════ -->
+<div class="slide" id="s11">
+  <div class="bg-dark"></div>
+  <div class="deco" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,87,217,0.25),transparent 70%);top:-100px;right:-50px"></div>
+  <div class="content-full">
+    <div class="label anim">07 · FINANCIAL PLAN</div>
+    <h2 class="title anim a1">财务规划</h2>
+    <div class="grid-2 anim a3">
+      <!-- 融资计划 -->
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--blue-light);margin-bottom:10px;letter-spacing:1px">三轮融资计划</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="card-blue" style="padding:14px 16px;display:flex;gap:14px;align-items:center">
+            <div style="width:48px;height:48px;border-radius:50%;background:rgba(0,119,255,0.2);border:2px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:var(--blue-light);flex-shrink:0">种</div>
+            <div><div style="font-size:12px;font-weight:700;color:#fff">种子轮 ¥200万</div><div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:3px">2026 Q1 · 产品研发 · 首批量产500台</div></div>
+          </div>
+          <div class="card-blue" style="padding:14px 16px;display:flex;gap:14px;align-items:center">
+            <div style="width:48px;height:48px;border-radius:50%;background:rgba(0,119,255,0.2);border:2px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:var(--blue-light);flex-shrink:0">A</div>
+            <div><div style="font-size:12px;font-weight:700;color:#fff">A轮 ¥600万</div><div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:3px">2027 Q2 · 扩产 + 全国渠道铺设</div></div>
+          </div>
+          <div class="card-blue" style="padding:14px 16px;display:flex;gap:14px;align-items:center">
+            <div style="width:48px;height:48px;border-radius:50%;background:rgba(0,119,255,0.2);border:2px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:var(--blue-light);flex-shrink:0">B</div>
+            <div><div style="font-size:12px;font-weight:700;color:#fff">B轮（目标）¥2000万</div><div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:3px">2028 · 全国扩张 · 品类扩展</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- 关键指标 -->
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--blue-light);margin-bottom:10px;letter-spacing:1px">关键财务指标</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="card" style="text-align:center;padding:14px">
+            <div style="font-size:22px;font-weight:900;background:linear-gradient(120deg,#fff,#a8d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px">¥80万</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px">启动资金</div>
+          </div>
+          <div class="card" style="text-align:center;padding:14px">
+            <div style="font-size:22px;font-weight:900;background:linear-gradient(120deg,#34C759,#30D0A0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px">¥1亿</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px">3年估值（B轮前）</div>
+          </div>
+          <div class="card" style="text-align:center;padding:14px">
+            <div style="font-size:22px;font-weight:900;background:linear-gradient(120deg,#FF9500,#FFB347);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px">首年</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px">盈亏平衡目标</div>
+          </div>
+          <div class="card" style="text-align:center;padding:14px">
+            <div style="font-size:22px;font-weight:900;background:linear-gradient(120deg,#fff,#a8d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px">¥3000万</div>
+            <div style="font-size:9px;color:var(--text3);margin-top:4px">5年营收目标</div>
+          </div>
+        </div>
+        <!-- 成本构成 -->
+        <div style="margin-top:12px">
+          <div class="chart-title" style="color:rgba(255,255,255,0.5)">启动成本构成</div>
+          <svg viewBox="0 0 400 80" width="100%" style="max-width:400px">
+            <rect x="0" y="0" width="400" height="12" rx="6" fill="rgba(0,87,217,0.15)"/>
+            <rect x="0" y="0" width="168" height="12" rx="6" fill="#0057D9"/>
+            <text x="4" y="9" font-size="7" fill="#fff" font-family="PingFang SC" font-weight="600">人力 42%</text>
+            <rect x="168" y="0" width="96" height="12" rx="0" fill="#0077FF"/>
+            <text x="172" y="9" font-size="7" fill="#fff" font-family="PingFang SC" font-weight="600">研发 24%</text>
+            <rect x="264" y="0" width="80" height="12" rx="0" fill="#00AAFF"/>
+            <text x="268" y="9" font-size="7" fill="#fff" font-family="PingFang SC" font-weight="600">营销 20%</text>
+            <rect x="344" y="0" width="56" height="12" rx="0" fill="rgba(0,170,255,0.4)"/>
+            <text x="348" y="9" font-size="7" fill="#fff" font-family="PingFang SC">运营 14%</text>
+
+            <text x="4" y="30" font-size="8" fill="#fff" font-family="PingFang SC">人力费用</text><text x="4" y="42" font-size="8" fill="rgba(255,255,255,0.4)" font-family="PingFang SC">¥33.6万 · 5人团队</text>
+            <text x="4" y="58" font-size="8" fill="#fff" font-family="PingFang SC">研发费用</text><text x="4" y="70" font-size="8" fill="rgba(255,255,255,0.4)" font-family="PingFang SC">¥19.2万 · 算法+硬件</text>
+            <text x="200" y="30" font-size="8" fill="#fff" font-family="PingFang SC">营销推广</text><text x="200" y="42" font-size="8" fill="rgba(255,255,255,0.4)" font-family="PingFang SC">¥16万 · 展会+拍摄</text>
+            <text x="200" y="58" font-size="8" fill="#fff" font-family="PingFang SC">运营费用</text><text x="200" y="70" font-size="8" fill="rgba(255,255,255,0.4)" font-family="PingFang SC">¥11.2万 · 办公+行政</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ 12. 团队 ═══════ -->
+<div class="slide" id="s12">
+  <div class="bg-glass"></div>
+  <div class="content-full">
+    <div class="label label-dark anim">08 · TEAM</div>
     <h2 class="title title-dark anim a1">核心团队</h2>
-    <div class="grid-4 anim a3" style="margin-top:16px">
-      <div class="card" style="text-align:center;padding:24px 16px">
-        <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#003399,#0077FF);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;margin:0 auto 12px">张</div>
+    <div class="grid-4 anim a3" style="margin-bottom:14px">
+      <div class="card" style="text-align:center;padding:18px">
+        <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#003399,#0077FF);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;margin:0 auto 10px">张</div>
         <div style="font-size:13px;font-weight:700">张XX</div>
         <div style="font-size:10px;color:var(--blue);font-weight:600;margin-top:3px">创始人 & CEO</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">XX大学 MBA<br>10年智能硬件经验</div>
+        <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">XX大学 MBA<br>10年智能硬件经验<br>连续创业者</div>
       </div>
-      <div class="card" style="text-align:center;padding:24px 16px">
-        <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0057D9,#00AAFF);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;margin:0 auto 12px">李</div>
+      <div class="card" style="text-align:center;padding:18px">
+        <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#0057D9,#00AAFF);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;margin:0 auto 10px">李</div>
         <div style="font-size:13px;font-weight:700">李XX</div>
         <div style="font-size:10px;color:var(--blue);font-weight:600;margin-top:3px">CTO</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">XX大学 博士<br>机器人算法专家</div>
+        <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">XX大学 博士<br>机器人算法专家<br>水下SLAM研究</div>
       </div>
-      <div class="card" style="text-align:center;padding:24px 16px">
-        <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0077FF,#00AAFF);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;margin:0 auto 12px">王</div>
+      <div class="card" style="text-align:center;padding:18px">
+        <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#0077FF,#00AAFF);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;margin:0 auto 10px">王</div>
         <div style="font-size:13px;font-weight:700">王XX</div>
         <div style="font-size:10px;color:var(--blue);font-weight:600;margin-top:3px">COO</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">前XX科技运营总监<br>精益生产专家</div>
+        <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">前XX科技运营总监<br>精益生产专家<br>供应链管理10年</div>
       </div>
-      <div class="card" style="text-align:center;padding:24px 16px">
-        <div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#003399,#0057D9);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;margin:0 auto 12px">陈</div>
+      <div class="card" style="text-align:center;padding:18px">
+        <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#003399,#0057D9);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;margin:0 auto 10px">陈</div>
         <div style="font-size:13px;font-weight:700">陈XX</div>
         <div style="font-size:10px;color:var(--blue);font-weight:600;margin-top:3px">市场总监</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">泳池行业8年<br>渠道经验</div>
+        <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">泳池行业8年<br>渠道资源深厚<br>B端客户关系</div>
       </div>
     </div>
-    <!-- 顾问/顾问团 -->
-    <div class="grid-3 anim a4" style="margin-top:16px">
-      <div class="card" style="padding:14px 16px">
-        <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:1px;margin-bottom:8px">技术顾问</div>
-        <div style="font-size:12px;font-weight:600;color:var(--text)">XX大学 机械学院 教授</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:4px">水下机器人SLAM专家</div>
+    <!-- 顾问 -->
+    <div class="grid-3 anim a4">
+      <div class="card" style="padding:12px 14px;display:flex;gap:12px;align-items:center">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#003399,#0077FF);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0">顾</div>
+        <div><div style="font-size:11px;font-weight:700">XX大学 机械学院 教授</div><div style="font-size:9px;color:var(--text3);margin-top:2px">水下机器人SLAM技术顾问</div></div>
       </div>
-      <div class="card" style="padding:14px 16px">
-        <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:1px;margin-bottom:8px">商业顾问</div>
-        <div style="font-size:12px;font-weight:600;color:var(--text)">XX资本 合伙人</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:4px">智能硬件投资专家</div>
+      <div class="card" style="padding:12px 14px;display:flex;gap:12px;align-items:center">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0057D9,#00AAFF);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0">投</div>
+        <div><div style="font-size:11px;font-weight:700">XX资本 合伙人</div><div style="font-size:9px;color:var(--text3);margin-top:2px">智能硬件投资专家</div></div>
       </div>
-      <div class="card" style="padding:14px 16px">
-        <div style="font-size:11px;font-weight:700;color:var(--text3);letter-spacing:1px;margin-bottom:8px">行业顾问</div>
-        <div style="font-size:12px;font-weight:600;color:var(--text)">XX泳池设备 总经理</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:4px">15年泳池行业经验</div>
+      <div class="card" style="padding:12px 14px;display:flex;gap:12px;align-items:center">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0077FF,#00AAFF);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0">业</div>
+        <div><div style="font-size:11px;font-weight:700">XX泳池设备 总经理</div><div style="font-size:9px;color:var(--text3);margin-top:2px">15年泳池行业经验</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ════════ 10. 风险 ════════ -->
-<div class="slide" id="s10">
-  <div class="bg-blue"></div>
-  <div class="deco" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,170,255,0.18),transparent 70%);bottom:-80px;right:-50px"></div>
-  <div class="content">
-    <div class="label anim">RISK MANAGEMENT</div>
-    <h2 class="title anim a1">风险与应对</h2>
-    <div class="grid-2 anim a3" style="margin-top:16px;max-width:920px">
-      <div class="card-blue" style="border:1px solid rgba(255,255,255,0.12)">
-        <div style="font-size:11px;font-weight:800;color:rgba(255,255,255,0.4);letter-spacing:2px;margin-bottom:10px">技术风险</div>
-        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:8px">设备故障·算法误判</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.7">应对：严格质量检测·远程监测·快速响应·专利布局</div>
+<!-- ═══════ 13. 里程碑 ═══════ -->
+<div class="slide" id="s13">
+  <div class="bg-anim"></div>
+  <div class="deco" style="width:500px;height:500px;background:radial-gradient(circle,rgba(0,87,217,0.25),transparent 70%);top:-100px;right:-50px"></div>
+  <div class="content-full">
+    <div class="label anim">MILESTONE</div>
+    <h2 class="title anim a1">发展规划</h2>
+    <div class="grid-2 anim a3">
+      <!-- 时间轴 -->
+      <div>
+        <svg viewBox="0 0 400 320" width="100%" style="max-width:400px">
+          <line x1="30" y1="20" x2="30" y2="300" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+          <circle cx="30" cy="20" r="8" fill="#0057D9"/>
+          <circle cx="30" cy="100" r="8" fill="#0057D9"/>
+          <circle cx="30" cy="180" r="8" fill="#0077FF"/>
+          <circle cx="30" cy="260" r="8" fill="#00AAFF"/>
+          <!-- 2026 Q1 -->
+          <rect x="50" y="4" width="340" height="36" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+          <text x="62" y="18" font-size="9" fill="#00AAFF" font-family="PingFang SC" font-weight="700">2026 Q1</text>
+          <text x="62" y="30" font-size="10" fill="#fff" font-family="PingFang SC" font-weight="600">完成产品研发</text>
+          <text x="200" y="30" font-size="8" fill="rgba(255,255,255,0.4)" font-family="PingFang SC">算法定型·硬件打样</text>
+          <!-- 2026 Q2 -->
+          <rect x="50" y="84" width="340" height="36" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+          <text x="62" y="98" font-size="9" fill="#00AAFF" font-family="PingFang SC" font-weight="700">2026 Q2</text>
+          <text x="62" y="110" font-size="10" fill="#fff" font-family="PingFang SC" font-weight="600">首批量产500台</text>
+          <text x="200" y="110" font-size="8" fill="rgba(255,255,255,0.4)" font-family="PingFang SC">建立供应链</text>
+          <!-- 2027 Q2 -->
+          <rect x="50" y="164" width="340" height="36" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+          <text x="62" y="178" font-size="9" fill="#0077FF" font-family="PingFang SC" font-weight="700">2027 Q2</text>
+          <text x="62" y="190" font-size="10" fill="#fff" font-family="PingFang SC" font-weight="600">A轮融资 · 扩产</text>
+          <text x="200" y="190" font-size="8" fill="rgba(255,255,255,0.4)" font-family="PingFang SC">月流水破50万</text>
+          <!-- 2028+ -->
+          <rect x="50" y="244" width="340" height="36" rx="8" fill="rgba(0,119,255,0.12)" stroke="rgba(0,170,255,0.3)"/>
+          <text x="62" y="258" font-size="9" fill="#00AAFF" font-family="PingFang SC" font-weight="700">2028+</text>
+          <text x="62" y="270" font-size="10" fill="#fff" font-family="PingFang SC" font-weight="600">B端TOP3 · 年营收3000万</text>
+          <text x="280" y="270" font-size="8" fill="#34C759" font-family="PingFang SC" font-weight="700">¥1亿估值</text>
+        </svg>
       </div>
-      <div class="card-blue" style="border:1px solid rgba(255,255,255,0.12)">
-        <div style="font-size:11px;font-weight:800;color:rgba(255,255,255,0.4);letter-spacing:2px;margin-bottom:10px">资金风险</div>
-        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:8px">现金流·周转压力</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.7">应对：订阅制稳定现金流·滚动预算·动态库存管理</div>
-      </div>
-      <div class="card-blue" style="border:1px solid rgba(255,255,255,0.12)">
-        <div style="font-size:11px;font-weight:800;color:rgba(255,255,255,0.4);letter-spacing:2px;margin-bottom:10px">市场风险</div>
-        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:8px">巨头竞争·价格战</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.7">应对：差异化零碳技术·高端品牌定位·订阅锁定用户</div>
-      </div>
-      <div class="card-blue" style="border:1px solid rgba(255,255,255,0.12)">
-        <div style="font-size:11px;font-weight:800;color:rgba(255,255,255,0.4);letter-spacing:2px;margin-bottom:10px">服务风险</div>
-        <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:8px">售后响应·质量下降</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.55);line-height:1.7">应对：区域授权体系·标准化服务流程·满意度监测</div>
-      </div>
-    </div>
-    <!-- 预警指标 -->
-    <div class="anim a4" style="margin-top:16px;max-width:920px">
-      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);letter-spacing:2px;margin-bottom:10px">关键监测指标</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;font-size:11px;color:rgba(255,255,255,0.7)">销售增长率</span>
-        <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;font-size:11px;color:rgba(255,255,255,0.7)">订阅续费率</span>
-        <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;font-size:11px;color:rgba(255,255,255,0.7)">设备故障率</span>
-        <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;font-size:11px;color:rgba(255,255,255,0.7)">用户留存率</span>
-        <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 14px;font-size:11px;color:rgba(255,255,255,0.7)">现金流覆盖率</span>
+      <!-- 目标 -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:11px;font-weight:700;color:var(--blue-light);margin-bottom:4px;letter-spacing:1px">五年目标（2031）</div>
+        <div class="card-blue" style="padding:14px 16px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.6)">年营收</div>
+            <div style="font-size:22px;font-weight:900;background:linear-gradient(120deg,#fff,#a8d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px">¥3000万</div>
+          </div>
+          <div style="height:6px;background:rgba(255,255,255,0.1);border-radius:3px;margin-top:8px;overflow:hidden">
+            <div style="height:100%;width:75%;background:linear-gradient(90deg,#0057D9,#00AAFF);border-radius:3px"></div>
+          </div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:4px">目标完成度 75%</div>
+        </div>
+        <div class="card-blue" style="padding:14px 16px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.6)">B端市占率</div>
+            <div style="font-size:22px;font-weight:900;background:linear-gradient(120deg,#fff,#a8d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px">TOP 3</div>
+          </div>
+          <div style="height:6px;background:rgba(255,255,255,0.1);border-radius:3px;margin-top:8px;overflow:hidden">
+            <div style="height:100%;width:60%;background:linear-gradient(90deg,#0057D9,#00AAFF);border-radius:3px"></div>
+          </div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:4px">行业前三目标</div>
+        </div>
+        <div class="card-blue" style="padding:14px 16px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.6)">累计服务用户</div>
+            <div style="font-size:22px;font-weight:900;background:linear-gradient(120deg,#fff,#a8d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px">5000+</div>
+          </div>
+          <div style="height:6px;background:rgba(255,255,255,0.1);border-radius:3px;margin-top:8px;overflow:hidden">
+            <div style="height:100%;width:50%;background:linear-gradient(90deg,#0057D9,#00AAFF);border-radius:3px"></div>
+          </div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:4px">B端+C端合计</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ════════ 11. 感谢 ════════ -->
-<div class="slide" id="s11">
+<!-- ═══════ 14. 感谢 ═══════ -->
+<div class="slide" id="s14">
   <div class="bg-anim"></div>
   <div class="deco" style="width:600px;height:600px;background:radial-gradient(circle,rgba(0,87,217,0.3),transparent 70%);top:-150px;left:-100px"></div>
   <div class="deco" style="width:400px;height:400px;background:radial-gradient(circle,rgba(0,170,255,0.2),transparent 70%);bottom:-80px;right:-80px"></div>
   <div class="content" style="align-items:center;text-align:center">
     <div class="label anim">THANKS</div>
-    <h2 class="title anim a1" style="font-size:clamp(46px,6vw,76px)">感谢聆听</h2>
-    <p class="sub anim a2" style="text-align:center;margin-bottom:40px">
+    <h2 class="title anim a1" style="font-size:clamp(44px,6vw,72px)">感谢聆听</h2>
+    <p class="sub anim a2" style="text-align:center;margin-bottom:36px">
       期待与您深入交流<br>共同推动泳池智能化变革
     </p>
-    <div class="stats-row anim a3" style="justify-content:center;gap:32px">
-      <div style="background:rgba(255,255,255,0.08);border-radius:14px;padding:14px 24px;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,0.75)">
-        <span>📧</span> contact@shuboat.com
+    <div class="stats-row anim a3" style="justify-content:center;gap:24px">
+      <div class="stat-card" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
+        <div style="font-size:18px;margin-bottom:4px">📧</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.75)">contact@shuboat.com</div>
       </div>
-      <div style="background:rgba(255,255,255,0.08);border-radius:14px;padding:14px 24px;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;gap:8px;font-size:14px;color:rgba(255,255,255,0.75)">
-        <span>🌐</span> www.shuboat.com
+      <div class="stat-card" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12)">
+        <div style="font-size:18px;margin-bottom:4px">🌐</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.75)">www.shuboat.com</div>
       </div>
     </div>
-    <div class="anim a4" style="margin-top:60px;font-size:13px;color:rgba(255,255,255,0.35)">
-      沭波特智能科技（深圳）有限公司
+    <div class="anim a4" style="margin-top:50px;font-size:12px;color:rgba(255,255,255,0.3)">
+      沭波特智能科技（深圳）有限公司 · 第十六届三创赛参赛项目
     </div>
   </div>
 </div>
@@ -723,7 +1026,6 @@ body{font-family:var(--font);overflow:hidden;background:#000}
 <script>
 const slides = document.querySelectorAll('.slide');
 let current = 0;
-
 const navBar = document.getElementById('navBar');
 slides.forEach((_, i) => {
   const btn = document.createElement('button');
@@ -739,7 +1041,6 @@ function goTo(n) {
   current = n;
   slides[current].classList.add('active');
   dots.forEach((d, i) => d.classList.toggle('active', i === current));
-  // Trigger animations
   slides[current].querySelectorAll('.anim').forEach(el => {
     el.classList.remove('in');
     void el.offsetWidth;
@@ -755,15 +1056,12 @@ document.addEventListener('keydown', e => {
     else document.exitFullscreen?.();
   }
 });
-
 let tx = 0;
 document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
 document.addEventListener('touchend', e => {
   const dx = e.changedTouches[0].clientX - tx;
   if (Math.abs(dx) > 50) dx < 0 ? goTo(current + 1) : goTo(current - 1);
 });
-
-// Init first slide animations
 goTo(0);
 </script>
 </body>
