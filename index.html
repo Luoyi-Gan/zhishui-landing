@@ -6,19 +6,20 @@
   <title>智水清源 — 一站式泳池智能清洁方案</title>
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    :root{--bg:#f5f7fa;--white:#ffffff;--text:#1a1a2e;--text2:#5a6178;--text3:#9aa0b4;--border:rgba(0,0,0,0.07);--ocean:#0057D9;--ocean-light:#00AAFF;--ocean-pale:#EEF6FF;--mint:#30D0A0;--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+    :root{--bg:#f5f7fa;--white:#ffffff;--text:#1a1a2e;--text2:#5a6178;--text3:#9aa0b4;--border:rgba(0,0,0,0.07);--ocean:#0057D9;--ocean-light:#00AAFF;--ocean-pale:#EEF6FF;--mint:#0077FF;--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
     html{scroll-behavior:smooth}
     body{font-family:var(--font);background:var(--white);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-    .logo{font-size:17px;font-weight:800;letter-spacing:-0.4px;background:linear-gradient(120deg,#0057D9,#00AAFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(0,20,60,0.92);box-shadow:0 1px 12px rgba(0,0,0,0.3)}
+    .logo{font-size:17px;font-weight:800;letter-spacing:-0.4px;color:#fff}
     .nav-links{display:flex;gap:28px;align-items:center}
-    .nav-links a{color:var(--text2);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s}
+    .nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:13px;font-weight:600;transition:color 0.2s}
     .nav-links a:hover{color:var(--ocean)}
-    .nav-cta{background:var(--ocean);color:#fff;padding:6px 17px;border-radius:980px;font-weight:600;font-size:13px;transition:opacity 0.2s}
-    .nav-cta:hover{opacity:0.85}
+    .nav-links .nav-cta{background:#0057D9;color:#fff!important;padding:6px 17px;border-radius:980px;font-weight:600;font-size:13px;transition:opacity 0.2s;text-decoration:none}
+    .nav-links .nav-cta:hover{opacity:0.85}
+    .nav-links .nav-cta:visited{color:#fff!important}
 
-    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative;background:linear-gradient(135deg,#b8d8f8 0%,#d8ecff 20%,#a8d4f5 40%,#c8e8ff 60%,#d0e8f8 80%,#e4f2ff 100%);background-size:500% 500%;animation:heroBg 10s ease infinite}
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative;background:linear-gradient(135deg,#003399 0%,#0057D9 20%,#0077FF 40%,#00AAFF 60%,#0057D9 80%,#003399 100%);background-size:400% 400%;animation:heroBg 8s ease infinite}
     @keyframes heroBg{0%,100%{background-position:0% 50%}50%{background-position:100% 20%}}
     .hero.in{background-position:100% 20%}
     .hero-text-anim{position:relative;z-index:1}
@@ -28,20 +29,20 @@
     .hero.in .hero-text-anim .hero-sub{opacity:1;transform:translateY(0);transition-delay:0.4s}
     .hero.in .hero-text-anim .cta-row{opacity:1;transform:translateY(0);transition-delay:0.55s}
     .hero.in .hero-text-anim .stats{opacity:1;transform:translateY(0);transition-delay:0.7s}
-    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#0057D9,#00AAFF,#30D0A0)}
-    .eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ocean);margin-bottom:16px}
-    h1{font-size:clamp(36px,8vw,68px);font-weight:900;letter-spacing:-2.5px;line-height:1.05;color:var(--text);margin-bottom:10px}
-    h1 span{background:linear-gradient(120deg,#0057D9,#00AAFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .hero-sub{font-size:clamp(15px,2vw,18px);color:var(--text2);line-height:1.7;margin-bottom:28px;max-width:420px}
+    .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#0057D9,#00AAFF,#66C2FF)}
+    .eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:16px}
+    h1{font-size:clamp(42px,9vw,80px);font-weight:900;letter-spacing:-2.5px;line-height:1.05;color:#fff;margin-bottom:10px}
+    h1 span{color:#ffffff;text-shadow:0 2px 12px rgba(0,30,90,0.35)}
+    .hero-sub{font-size:clamp(17px,2.5vw,22px);color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:28px;max-width:480px}
     .cta-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px}
     .btn-primary{background:var(--ocean);color:#fff;padding:12px 26px;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none;transition:opacity 0.2s}
     .btn-primary:hover{opacity:0.88}
     .btn-ghost{border:1.5px solid var(--border);color:var(--text);padding:12px 26px;border-radius:980px;font-size:14px;font-weight:500;text-decoration:none;transition:border-color 0.2s}
     .btn-ghost:hover{border-color:var(--ocean);color:var(--ocean)}
-    .stats{display:flex;gap:40px;margin-top:40px;flex-wrap:wrap;justify-content:center}
+    .stats{display:flex;gap:40px;margin-top:40px;flex-wrap:wrap;justify-content:center;background:rgba(255,255,255,0.1);padding:20px 32px;border-radius:20px;backdrop-filter:blur(10px)}
     .stat{text-align:center}
-    .stat-num{font-size:28px;font-weight:900;letter-spacing:-1.5px;background:linear-gradient(120deg,#0057D9,#00AAFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .stat-label{font-size:11px;color:var(--text3);margin-top:3px}
+    .stat-num{font-size:28px;font-weight:900;letter-spacing:-1.5px;color:#fff}
+    .stat-label{font-size:11px;color:rgba(255,255,255,0.6);margin-top:3px}
 
     .section{padding:72px 24px}
     .section-white{background:var(--white)}
@@ -76,8 +77,8 @@
     .plat-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
     .plat-head-l{display:flex;align-items:center;gap:7px}
     .plat-head-title{font-size:13px;font-weight:700}
-    .plat-live{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:var(--mint);background:rgba(48,208,160,0.08);border:1px solid rgba(48,208,160,0.2);padding:3px 9px;border-radius:980px}
-    .live-dot{width:5px;height:5px;border-radius:50%;background:var(--mint);animation:blink 1.5s ease-in-out infinite}
+    .plat-live{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:#0057D9;background:rgba(0,87,217,0.08);border:1px solid rgba(0,87,217,0.2);padding:3px 9px;border-radius:980px}
+    .live-dot{width:5px;height:5px;border-radius:50%;background:#0077FF;animation:blink 1.5s ease-in-out infinite}
     @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
     .data-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
     .ditem{background:var(--ocean-pale);border-radius:12px;padding:14px 10px;text-align:center}
@@ -85,7 +86,7 @@
     .ditem-val{font-size:18px;font-weight:900;color:var(--text)}
     .ditem-unit{font-size:9px;color:var(--text3)}
     .ditem-key{font-size:9px;color:var(--text3);margin-top:2px}
-    .ditem-status{display:inline-block;margin-top:5px;font-size:9px;font-weight:700;padding:2px 8px;border-radius:980px;background:rgba(48,213,88,0.1);color:#34c759}
+    .ditem-status{display:inline-block;margin-top:5px;font-size:9px;font-weight:700;padding:2px 8px;border-radius:980px;background:rgba(0,119,255,0.1);color:#0077FF}
     .plat-tips{margin-top:16px}
     .ptip{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:11px;color:var(--text2)}
     .ptip:last-child{border-bottom:none}
@@ -94,10 +95,10 @@
     .score-card{background:var(--white);border-radius:20px;padding:22px;border:1px solid var(--border);text-align:center}
     .score-ring-wrap{margin:0 auto 12px;width:100px;height:100px;position:relative}
     .score-ring-wrap svg{transform:rotate(-90deg)}
-    .score-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:22px;font-weight:900;background:linear-gradient(120deg,#0057D9,#00B4B4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .score-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:22px;font-weight:900;background:linear-gradient(120deg,#0057D9,#00AAFF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .score-sub{font-size:9px;color:var(--text3);margin-top:1px}
     .score-label{font-size:11px;font-weight:600;color:var(--text)}
-    .score-grade{display:inline-block;margin-top:4px;font-size:10px;font-weight:700;padding:2px 10px;border-radius:980px;background:rgba(48,213,88,0.08);color:#34c759}
+    .score-grade{display:inline-block;margin-top:4px;font-size:10px;font-weight:700;padding:2px 10px;border-radius:980px;background:rgba(0,119,255,0.08);color:#0077FF}
     .mini-cards{display:flex;flex-direction:column;gap:8px}
     .mini-card{background:var(--white);border-radius:12px;padding:12px 16px;border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:11px}
     .mini-card-l{display:flex;align-items:center;gap:7px;color:var(--text2)}
@@ -114,7 +115,7 @@
     .price-note{font-size:10px;color:var(--text3);margin:3px 0 18px}
     .price-list{list-style:none;display:flex;flex-direction:column;gap:7px}
     .price-list li{font-size:11px;color:var(--text2);display:flex;align-items:flex-start;gap:6px}
-    .price-list li::before{content:'✓';color:var(--mint);font-weight:700;flex-shrink:0}
+    .price-list li::before{content:'✓';color:#0077FF;font-weight:700;flex-shrink:0}
 
     .cta-section{text-align:center;padding:80px 24px}
     .cta-title{font-size:clamp(24px,5vw,44px);font-weight:900;letter-spacing:-2px;color:var(--text);margin-bottom:10px}
@@ -122,10 +123,12 @@
     .cta-btn{background:var(--ocean);color:#fff;padding:12px 26px;border-radius:980px;font-size:14px;font-weight:600;text-decoration:none;display:inline-block;transition:opacity 0.2s}
     .cta-btn:hover{opacity:0.85}
 
-    footer{padding:32px 24px;text-align:center;background:var(--text);color:rgba(255,255,255,0.4)}
-    .footer-logo{font-size:15px;font-weight:800;background:linear-gradient(120deg,#00AAFF,#30D0A0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
-    .footer-co{font-size:10px;margin-bottom:12px}
+    footer{padding:32px 24px;text-align:center;background:var(--text);color:rgba(255,255,255,0.85)}
+    .footer-logo{font-size:15px;font-weight:800;background:linear-gradient(120deg,#00AAFF,#66C2FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+    .footer-co{font-size:10px;margin-bottom:12px;color:rgba(255,255,255,0.5)}
     .footer-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    .footer-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:12px}
+    .footer-links a:hover{color:#fff}
     .footer-links a{font-size:10px;color:rgba(255,255,255,0.3);text-decoration:none}
 
     .rv{opacity:0;transform:translateY(14px);transition:opacity 0.55s ease,transform 0.55s ease}
@@ -171,10 +174,10 @@
   <p class="section-sub rv d2">集清洁、监测、投药于一体</p>
   <div class="grid-3">
     <div class="card rv d1"><div class="card-icon" style="background:rgba(0,87,217,0.07)"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="#0057D9" stroke-width="1.8"/><path d="M12 3C12 3 5 7 5 12C5 17 12 21 12 21C12 21 19 17 19 12C19 7 12 3 12 3Z" stroke="#0073E6" stroke-width="1.8"/></svg></div><div class="card-title">全域表面清洁</div><div class="card-text">清理落叶、0.1mm级细尘，8L大容量垃圾篮远超行业平均。</div></div>
-    <div class="card rv d2"><div class="card-icon" style="background:rgba(0,180,180,0.07)"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3V7M12 17V21M5.93 5.93L8.76 8.76M17.24 17.24L20.07 20.07M3 12H7M17 12H21M5.93 18.07L8.76 15.24M17.24 8.76L20.07 5.93" stroke="#00B4B4" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="#00AAFF" stroke-width="1.8"/></svg></div><div class="card-title">实时水质监测</div><div class="card-text">pH、余氯、浊度传感器实时监测，精准分析水质状况。</div></div>
+    <div class="card rv d2"><div class="card-icon" style="background:rgba(0,87,217,0.07)"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3V7M12 17V21M5.93 5.93L8.76 8.76M17.24 17.24L20.07 20.07M3 12H7M17 12H21M5.93 18.07L8.76 15.24M17.24 8.76L20.07 5.93" stroke="#0077FF" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="#00AAFF" stroke-width="1.8"/></svg></div><div class="card-title">实时水质监测</div><div class="card-text">pH、余氯、浊度传感器实时监测，精准分析水质状况。</div></div>
     <div class="card rv d3"><div class="card-icon" style="background:rgba(255,180,0,0.07)"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="#FFB400" stroke-width="1.8"/><path d="M12 2V4M12 20V22M2 12H4M20 12H22M5.2 5.2L7.2 7.2M18.8 18.8L20.8 20.8M5.2 18.8L7.2 16.8M18.8 7.2L20.8 5.2" stroke="#FF9500" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="card-title">太阳能充电</div><div class="card-text">13.5W 高效太阳能板 + 充电双模式，续航持久。</div></div>
     <div class="card rv d4"><div class="card-icon" style="background:rgba(88,86,214,0.07)"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#5856D6" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke="#5856D6" stroke-width="1.8"/><path d="M12 3.5V5.5M12 18.5V20.5M3.5 12H5.5M20.5 12H18.5" stroke="#8078E8" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="card-title">三重传感器导航</div><div class="card-text">GPS + 惯导 + 超声波融合，精准规划清洁路线。</div></div>
-    <div class="card rv d5"><div class="card-icon" style="background:rgba(0,180,150,0.07)"><svg viewBox="0 0 24 24" fill="none"><path d="M8 22V6C8 6 5 5.5 3 7C1 8.5 2 12 5 14L8 17" stroke="#00B4B4" stroke-width="1.8" stroke-linecap="round"/><path d="M16 2V18C16 18 19 18.5 21 17C23 15.5 22 12 19 10L16 7" stroke="#30D0A0" stroke-width="1.8" stroke-linecap="round"/><path d="M10 13H14" stroke="#00B4B4" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="card-title">自动全域投药</div><div class="card-text">装配药剂槽，自动全水域投药消毒，维持pH稳定。</div></div>
+    <div class="card rv d5"><div class="card-icon" style="background:rgba(0,119,255,0.07)"><svg viewBox="0 0 24 24" fill="none"><path d="M8 22V6C8 6 5 5.5 3 7C1 8.5 2 12 5 14L8 17" stroke="#0077FF" stroke-width="1.8" stroke-linecap="round"/><path d="M16 2V18C16 18 19 18.5 21 17C23 15.5 22 12 19 10L16 7" stroke="#00AAFF" stroke-width="1.8" stroke-linecap="round"/><path d="M10 13H14" stroke="#0077FF" stroke-width="1.8" stroke-linecap="round"/></svg></div><div class="card-title">自动全域投药</div><div class="card-text">装配药剂槽，自动全水域投药消毒，维持pH稳定。</div></div>
     <div class="card rv d6"><div class="card-icon" style="background:rgba(0,87,217,0.07)"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="3" stroke="#0057D9" stroke-width="1.8"/><path d="M9 8H15M9 11H13M9 14H12" stroke="#0073E6" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="17.5" r="0.8" fill="#0057D9"/></svg></div><div class="card-title">APP 远程操控</div><div class="card-text">蓝牙连接，手机控制、查看进度、预约服务、购买耗材。</div></div>
   </div>
 </section>
@@ -185,9 +188,9 @@
   <p class="section-sub rv d2">每一个细节，都经过精密计算</p>
   <div class="product-grid">
     <div class="product-card rv d1" style="background:linear-gradient(160deg,#0057D9,#0073E6)"><div class="pc-icon">🏊</div><div class="pc-title">智能清洁</div><div class="pc-sub">全域移动 · 主动清洁</div></div>
-    <div class="product-card rv d2" style="background:linear-gradient(160deg,#007a7a,#00B4B4)"><div class="pc-icon">💧</div><div class="pc-title">水质监测</div><div class="pc-sub">pH · 余氯 · 浊度</div></div>
+    <div class="product-card rv d2" style="background:linear-gradient(160deg,#0057D9,#0077FF)"><div class="pc-icon">💧</div><div class="pc-title">水质监测</div><div class="pc-sub">pH · 余氯 · 浊度</div></div>
     <div class="product-card rv d3" style="background:linear-gradient(160deg,#004899,#0057D9)"><div class="pc-icon">🤖</div><div class="pc-title">Nereus-S1</div><div class="pc-sub">机器人本体</div></div>
-    <div class="product-card rv d4" style="background:linear-gradient(160deg,#007060,#00B4B4)"><div class="pc-icon">📊</div><div class="pc-title">数据平台</div><div class="pc-sub">云端分析 · 智能提醒</div></div>
+    <div class="product-card rv d4" style="background:linear-gradient(160deg,#0057D9,#00AAFF)"><div class="pc-icon">📊</div><div class="pc-title">数据平台</div><div class="pc-sub">云端分析 · 智能提醒</div></div>
   </div>
 </section>
 
@@ -204,7 +207,7 @@
   </div>
 </section>
 
-<section class="section section-white">
+<section class="section section-white" id="product">
   <div class="label rv">智能平台</div>
   <h2 class="rv d1">云端数据平台<br>一切尽在掌握</h2>
   <p class="section-sub rv d2">水质数据实时同步，算法分析精准建议</p>
@@ -220,7 +223,7 @@
         <div class="ditem"><div class="ditem-icon">✨</div><div class="ditem-val">0.3</div><div class="ditem-unit">NTU</div><div class="ditem-key">浊度 · &lt;0.5</div><div class="ditem-status">优秀</div></div>
       </div>
       <div class="plat-tips">
-        <div class="ptip"><div class="ptip-dot" style="background:#34c759"></div><span>三项指标均在安全范围内，水质优良</span></div>
+        <div class="ptip"><div class="ptip-dot" style="background:#0077FF"></div><span>三项指标均在安全范围内，水质优良</span></div>
         <div class="ptip"><div class="ptip-dot" style="background:#0057D9"></div><span>建议下次清洁：3 天后</span></div>
         <div class="ptip"><div class="ptip-dot" style="background:#ff9f0a"></div><span>落叶季提醒：可增加清洁频率</span></div>
       </div>
@@ -231,7 +234,7 @@
           <svg width="100" height="100" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="43" fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="6"/>
             <circle cx="50" cy="50" r="43" fill="none" stroke="url(#sg5)" stroke-width="6" stroke-linecap="round" stroke-dasharray="270.2" stroke-dashoffset="54" transform="rotate(-90 50 50)"/>
-            <defs><linearGradient id="sg5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0057D9"/><stop offset="100%" stop-color="#00B4B4"/></linearGradient></defs>
+            <defs><linearGradient id="sg5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0057D9"/><stop offset="100%" stop-color="#00AAFF"/></linearGradient></defs>
           </svg>
           <div class="score-num">87.5<div class="score-sub">/ 100</div></div>
         </div>
