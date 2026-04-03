@@ -34,19 +34,19 @@ body{font-family:var(--font);overflow:hidden;background:#000}
 .deco{position:absolute;border-radius:50%;pointer-events:none}
 
 /* 内容区 */
-.content{position:relative;z-index:5;flex:1;padding:56px 90px;
+.content{position:relative;z-index:5;flex:1;padding:32px 64px;
   display:flex;flex-direction:column;justify-content:center}
 
-.content-full{position:relative;z-index:5;flex:1;padding:56px 90px;
+.content-full{position:relative;z-index:5;flex:1;padding:32px 64px;
   display:flex;flex-direction:column}
 
 /* 标签 */
-.label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+.label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
   color:rgba(255,255,255,0.45);margin-bottom:8px}
 .label-dark{color:var(--blue)}
 
 /* 标题 */
-.title{font-size:clamp(30px,4.5vw,52px);font-weight:900;letter-spacing:-2px;
+.title{font-size:clamp(36px,5.5vw,64px);font-weight:900;letter-spacing:-2px;
   color:#fff;line-height:1.1;margin-bottom:6px}
 .title-dark{color:var(--text)}
 .title span{
@@ -54,32 +54,32 @@ body{font-family:var(--font);overflow:hidden;background:#000}
   -webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
 /* 副标题 */
-.sub{font-size:clamp(13px,1.5vw,17px);color:rgba(255,255,255,0.65);
+.sub{font-size:clamp(17px,2.2vw,22px);color:rgba(255,255,255,0.65);
   line-height:1.65;max-width:560px;margin-bottom:24px}
 .sub-dark{color:var(--text2)}
 
 /* 统计行 */
 .stats-row{display:flex;gap:16px;flex-wrap:wrap}
-.stat-card{background:rgba(255,255,255,0.08);border-radius:16px;padding:16px 22px;
+.stat-card{background:rgba(255,255,255,0.08);border-radius:16px;padding:18px 26px;
   border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(12px);
   text-align:center;min-width:100px}
-.stat-num{font-size:clamp(20px,2.4vw,28px);font-weight:900;color:#fff;letter-spacing:-2px;line-height:1}
+.stat-num{font-size:clamp(24px,3vw,36px);font-weight:900;color:#fff;letter-spacing:-2px;line-height:1}
 .stat-label{font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px}
 
 /* 网格 */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:960px}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:960px}
-.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:960px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
 
 /* 卡片 */
-.card{background:#fff;border-radius:14px;padding:18px 16px;
+.card{background:#fff;border-radius:14px;padding:20px 18px;
   border:1px solid var(--border);box-shadow:0 3px 12px rgba(0,0,0,0.05)}
-.card-blue{background:rgba(255,255,255,0.07);border-radius:14px;padding:18px 16px;
+.card-blue{background:rgba(255,255,255,0.07);border-radius:14px;padding:20px 18px;
   border:1px solid rgba(255,255,255,0.12)}
-.card-title{font-size:13px;font-weight:700;margin-bottom:5px;color:var(--text)}
+.card-title{font-size:15px;font-weight:700;margin-bottom:5px;color:var(--text)}
 .card-blue .card-title{color:#fff}
-.card-text{font-size:11px;color:var(--text2);line-height:1.6}
+.card-text{font-size:13px;color:var(--text2);line-height:1.6}
 .card-blue .card-text{color:rgba(255,255,255,0.6)}
 .card-num{font-size:clamp(20px,2.2vw,26px);font-weight:900;
   background:linear-gradient(120deg,var(--blue),var(--blue-light));
@@ -87,14 +87,14 @@ body{font-family:var(--font);overflow:hidden;background:#000}
 
 /* 图表 */
 .chart-wrap{width:100%}
-.chart-title{font-size:10px;font-weight:700;color:var(--text2);margin-bottom:10px;letter-spacing:1px}
+.chart-title{font-size:11px;font-weight:700;color:var(--text2);margin-bottom:10px;letter-spacing:1px}
 
 /* 图标+文字组合 */
 .icon-block{display:flex;gap:14px;align-items:flex-start;margin-bottom:12px}
 .icon-circle{width:40px;height:40px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
 .icon-info{flex:1}
 .icon-info-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px}
-.icon-info-text{font-size:10px;color:var(--text2);line-height:1.5}
+.icon-info-text{font-size:11px;color:var(--text2);line-height:1.5}
 
 /* 流程 */
 .flow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
@@ -203,7 +203,7 @@ body{font-family:var(--font);overflow:hidden;background:#000}
     </div>
     <div class="anim a4" style="margin-top:20px">
       <div class="chart-title">▲ 泳池运营成本构成（万元/年）</div>
-      <svg viewBox="0 0 900 160" width="100%" style="max-width:900px">
+      <svg viewBox="0 0 1170 160" width="100%" style="max-width:100%">
         <defs>
           <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stop-color="#FF3B30"/>
@@ -320,7 +320,7 @@ body{font-family:var(--font);overflow:hidden;background:#000}
       <!-- 左侧：传感器融合 -->
       <div>
         <div style="font-size:12px;font-weight:700;color:var(--blue-light);margin-bottom:12px;letter-spacing:1px">三重传感器融合导航</div>
-        <svg viewBox="0 0 400 240" width="100%" style="max-width:400px">
+        <svg viewBox="0 0 520 240" width="100%" style="max-width:100%">
           <!-- 中心圆 -->
           <circle cx="200" cy="120" r="40" fill="rgba(0,119,255,0.15)" stroke="#0057D9" stroke-width="2"/>
           <text x="200" y="116" text-anchor="middle" font-size="10" fill="#fff" font-family="PingFang SC" font-weight="700">Nereus-S1</text>
@@ -400,7 +400,7 @@ body{font-family:var(--font);overflow:hidden;background:#000}
       <!-- 对比优势 -->
       <div>
         <div style="font-size:11px;font-weight:700;color:var(--text2);margin-bottom:10px;letter-spacing:1px">行业对比优势</div>
-        <svg viewBox="0 0 420 260" width="100%" style="max-width:420px">
+        <svg viewBox="0 0 546 260" width="100%" style="max-width:100%">
           <!-- Y轴 -->
           <line x1="50" y1="20" x2="50" y2="210" stroke="#E8EEF8" stroke-width="1"/>
           <!-- X轴 -->
@@ -479,7 +479,7 @@ body{font-family:var(--font);overflow:hidden;background:#000}
     <div class="grid-2 anim a3">
       <!-- 平台界面示意 -->
       <div>
-        <svg viewBox="0 0 380 260" width="100%" style="max-width:380px">
+        <svg viewBox="0 0 494 260" width="100%" style="max-width:380px">
           <!-- 手机框架 -->
           <rect x="80" y="0" width="220" height="260" rx="20" fill="#1A1A2E" stroke="#0057D9" stroke-width="2"/>
           <rect x="90" y="12" width="200" height="236" rx="12" fill="#EEF6FF"/>
@@ -556,7 +556,7 @@ body{font-family:var(--font);overflow:hidden;background:#000}
       <!-- 市场规模增长图 -->
       <div>
         <div class="chart-title">▲ 中国泳池清洁机器人市场规模（亿美元）</div>
-        <svg viewBox="0 0 440 220" width="100%" style="max-width:440px">
+        <svg viewBox="0 0 572 220" width="100%" style="max-width:100%">
           <line x1="50" y1="20" x2="50" y2="185" stroke="#E8EEF8"/>
           <line x1="50" y1="185" x2="420" y2="185" stroke="#E8EEF8"/>
           <line x1="50" y1="60" x2="420" y2="60" stroke="#E8EEF8" stroke-dasharray="3"/>
@@ -597,7 +597,7 @@ body{font-family:var(--font);overflow:hidden;background:#000}
       <!-- 渗透率对比 -->
       <div>
         <div class="chart-title">▲ 渗透率对比（2024）</div>
-        <svg viewBox="0 0 440 220" width="100%" style="max-width:440px">
+        <svg viewBox="0 0 572 220" width="100%" style="max-width:100%">
           <!-- 条形图 -->
           <text x="8" y="40" font-size="9" fill="#5A6178" font-family="PingFang SC">中国</text>
           <rect x="80" y="26" width="55" height="22" rx="4" fill="rgba(255,59,48,0.2)"/>
@@ -658,19 +658,19 @@ body{font-family:var(--font);overflow:hidden;background:#000}
             <div style="padding:10px 12px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-align:center">太阳能</div>
             <div style="padding:10px 12px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-align:center">订阅</div>
             <div style="padding:10px 12px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.5);text-align:center">综合</div>
-            <div style="padding:9px 12px;font-size:10px;color:rgba(255,255,255,0.6)">Maytronics</div>
+            <div style="padding:9px 12px;font-size:11px;color:rgba(255,255,255,0.6)">Maytronics</div>
             <div style="padding:9px 12px;font-size:12px;text-align:center">★★★★</div>
-            <div style="padding:9px 12px;font-size:10px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
-            <div style="padding:9px 12px;font-size:10px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
-            <div style="padding:9px 12px;font-size:10px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
-            <div style="padding:9px 12px;font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-align:center">68</div>
-            <div style="padding:9px 12px;font-size:10px;color:rgba(255,255,255,0.6)">Fluidra</div>
+            <div style="padding:9px 12px;font-size:11px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
+            <div style="padding:9px 12px;font-size:11px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
+            <div style="padding:9px 12px;font-size:11px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
+            <div style="padding:9px 12px;font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);text-align:center">68</div>
+            <div style="padding:9px 12px;font-size:11px;color:rgba(255,255,255,0.6)">Fluidra</div>
             <div style="padding:9px 12px;font-size:12px;text-align:center">★★★★</div>
-            <div style="padding:9px 12px;font-size:10px;text-align:center;color:rgba(255,255,255,0.3)">★★</div>
-            <div style="padding:9px 12px;font-size:10px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
-            <div style="padding:9px 12px;font-size:10px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
-            <div style="padding:9px 12px;font-size:10px;font-weight:700;color:rgba(255,255,255,0.4);text-align:center">72</div>
-            <div style="padding:10px 12px;font-size:10px;font-weight:800;color:#00AAFF;background:rgba(0,87,217,0.1)">智水清源 ⭐</div>
+            <div style="padding:9px 12px;font-size:11px;text-align:center;color:rgba(255,255,255,0.3)">★★</div>
+            <div style="padding:9px 12px;font-size:11px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
+            <div style="padding:9px 12px;font-size:11px;text-align:center;color:rgba(255,255,255,0.3)">—</div>
+            <div style="padding:9px 12px;font-size:11px;font-weight:700;color:rgba(255,255,255,0.4);text-align:center">72</div>
+            <div style="padding:10px 12px;font-size:11px;font-weight:800;color:#00AAFF;background:rgba(0,87,217,0.1)">智水清源 ⭐</div>
             <div style="padding:10px 12px;font-size:12px;text-align:center;background:rgba(0,87,217,0.1)">★★★★</div>
             <div style="padding:10px 12px;font-size:12px;text-align:center;background:rgba(0,87,217,0.1)">★★★★</div>
             <div style="padding:10px 12px;font-size:12px;text-align:center;background:rgba(0,87,217,0.1)">★★★★</div>
@@ -683,20 +683,20 @@ body{font-family:var(--font);overflow:hidden;background:#000}
       <div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
           <div style="background:rgba(0,87,217,0.1);border-radius:12px;padding:12px;border:1px solid rgba(0,87,217,0.2)">
-            <div style="font-size:10px;font-weight:800;color:var(--blue-light);margin-bottom:6px;letter-spacing:1px">S 优势</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.6);line-height:1.8">三重传感器融合算法<br>硬件+平台+服务闭环<br>订阅制锁定用户<br>零碳ESG差异化</div>
+            <div style="font-size:11px;font-weight:800;color:var(--blue-light);margin-bottom:6px;letter-spacing:1px">S 优势</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.6);line-height:1.8">三重传感器融合算法<br>硬件+平台+服务闭环<br>订阅制锁定用户<br>零碳ESG差异化</div>
           </div>
           <div style="background:rgba(255,59,48,0.08);border-radius:12px;padding:12px;border:1px solid rgba(255,59,48,0.15)">
-            <div style="font-size:10px;font-weight:800;color:#FF6B6B;margin-bottom:6px;letter-spacing:1px">W 劣势</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.6);line-height:1.8">品牌认知度低<br>量产经验不足<br>初期渠道有限</div>
+            <div style="font-size:11px;font-weight:800;color:#FF6B6B;margin-bottom:6px;letter-spacing:1px">W 劣势</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.6);line-height:1.8">品牌认知度低<br>量产经验不足<br>初期渠道有限</div>
           </div>
           <div style="background:rgba(52,199,89,0.08);border-radius:12px;padding:12px;border:1px solid rgba(52,199,89,0.15)">
-            <div style="font-size:10px;font-weight:800;color:#34C759;margin-bottom:6px;letter-spacing:1px">O 机会</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.6);line-height:1.8">中国渗透率仅6%<br>政策支持智能家居<br>ESG零碳趋势<br>2025新国标趋严</div>
+            <div style="font-size:11px;font-weight:800;color:#34C759;margin-bottom:6px;letter-spacing:1px">O 机会</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.6);line-height:1.8">中国渗透率仅6%<br>政策支持智能家居<br>ESG零碳趋势<br>2025新国标趋严</div>
           </div>
           <div style="background:rgba(255,149,0,0.08);border-radius:12px;padding:12px;border:1px solid rgba(255,149,0,0.15)">
-            <div style="font-size:10px;font-weight:800;color:#FF9500;margin-bottom:6px;letter-spacing:1px">T 威胁</div>
-            <div style="font-size:10px;color:rgba(255,255,255,0.6);line-height:1.8">国际巨头先发优势<br>价格战风险<br>技术迭代加速</div>
+            <div style="font-size:11px;font-weight:800;color:#FF9500;margin-bottom:6px;letter-spacing:1px">T 威胁</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.6);line-height:1.8">国际巨头先发优势<br>价格战风险<br>技术迭代加速</div>
           </div>
         </div>
       </div>
@@ -734,7 +734,7 @@ body{font-family:var(--font);overflow:hidden;background:#000}
     <!-- 收入结构图 -->
     <div class="anim a4" style="margin-top:16px">
       <div class="chart-title">▲ 收入结构预测（2031年目标）</div>
-      <svg viewBox="0 0 900 160" width="100%" style="max-width:900px">
+      <svg viewBox="0 0 1170 160" width="100%" style="max-width:100%">
         <defs>
           <linearGradient id="pg1" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#0057D9"/>
@@ -808,15 +808,15 @@ body{font-family:var(--font);overflow:hidden;background:#000}
         <div style="display:flex;flex-direction:column;gap:10px">
           <div class="card-blue" style="padding:14px 16px;display:flex;gap:14px;align-items:center">
             <div style="width:48px;height:48px;border-radius:50%;background:rgba(0,119,255,0.2);border:2px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:var(--blue-light);flex-shrink:0">种</div>
-            <div><div style="font-size:12px;font-weight:700;color:#fff">种子轮 ¥200万</div><div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:3px">2026 Q1 · 产品研发 · 首批量产500台</div></div>
+            <div><div style="font-size:12px;font-weight:700;color:#fff">种子轮 ¥200万</div><div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:3px">2026 Q1 · 产品研发 · 首批量产500台</div></div>
           </div>
           <div class="card-blue" style="padding:14px 16px;display:flex;gap:14px;align-items:center">
             <div style="width:48px;height:48px;border-radius:50%;background:rgba(0,119,255,0.2);border:2px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:var(--blue-light);flex-shrink:0">A</div>
-            <div><div style="font-size:12px;font-weight:700;color:#fff">A轮 ¥600万</div><div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:3px">2027 Q2 · 扩产 + 全国渠道铺设</div></div>
+            <div><div style="font-size:12px;font-weight:700;color:#fff">A轮 ¥600万</div><div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:3px">2027 Q2 · 扩产 + 全国渠道铺设</div></div>
           </div>
           <div class="card-blue" style="padding:14px 16px;display:flex;gap:14px;align-items:center">
             <div style="width:48px;height:48px;border-radius:50%;background:rgba(0,119,255,0.2);border:2px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:var(--blue-light);flex-shrink:0">B</div>
-            <div><div style="font-size:12px;font-weight:700;color:#fff">B轮（目标）¥2000万</div><div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:3px">2028 · 全国扩张 · 品类扩展</div></div>
+            <div><div style="font-size:12px;font-weight:700;color:#fff">B轮（目标）¥2000万</div><div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:3px">2028 · 全国扩张 · 品类扩展</div></div>
           </div>
         </div>
       </div>
@@ -844,7 +844,7 @@ body{font-family:var(--font);overflow:hidden;background:#000}
         <!-- 成本构成 -->
         <div style="margin-top:12px">
           <div class="chart-title" style="color:rgba(255,255,255,0.5)">启动成本构成</div>
-          <svg viewBox="0 0 400 80" width="100%" style="max-width:400px">
+          <svg viewBox="0 0 520 80" width="100%" style="max-width:100%">
             <rect x="0" y="0" width="400" height="12" rx="6" fill="rgba(0,87,217,0.15)"/>
             <rect x="0" y="0" width="168" height="12" rx="6" fill="#0057D9"/>
             <text x="4" y="9" font-size="7" fill="#fff" font-family="PingFang SC" font-weight="600">人力 42%</text>
@@ -876,26 +876,26 @@ body{font-family:var(--font);overflow:hidden;background:#000}
       <div class="card" style="text-align:center;padding:18px">
         <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#003399,#0077FF);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;margin:0 auto 10px">张</div>
         <div style="font-size:13px;font-weight:700">张XX</div>
-        <div style="font-size:10px;color:var(--blue);font-weight:600;margin-top:3px">创始人 & CEO</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">XX大学 MBA<br>10年智能硬件经验<br>连续创业者</div>
+        <div style="font-size:11px;color:var(--blue);font-weight:600;margin-top:3px">创始人 & CEO</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5">XX大学 MBA<br>10年智能硬件经验<br>连续创业者</div>
       </div>
       <div class="card" style="text-align:center;padding:18px">
         <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#0057D9,#00AAFF);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;margin:0 auto 10px">李</div>
         <div style="font-size:13px;font-weight:700">李XX</div>
-        <div style="font-size:10px;color:var(--blue);font-weight:600;margin-top:3px">CTO</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">XX大学 博士<br>机器人算法专家<br>水下SLAM研究</div>
+        <div style="font-size:11px;color:var(--blue);font-weight:600;margin-top:3px">CTO</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5">XX大学 博士<br>机器人算法专家<br>水下SLAM研究</div>
       </div>
       <div class="card" style="text-align:center;padding:18px">
         <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#0077FF,#00AAFF);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;margin:0 auto 10px">王</div>
         <div style="font-size:13px;font-weight:700">王XX</div>
-        <div style="font-size:10px;color:var(--blue);font-weight:600;margin-top:3px">COO</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">前XX科技运营总监<br>精益生产专家<br>供应链管理10年</div>
+        <div style="font-size:11px;color:var(--blue);font-weight:600;margin-top:3px">COO</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5">前XX科技运营总监<br>精益生产专家<br>供应链管理10年</div>
       </div>
       <div class="card" style="text-align:center;padding:18px">
         <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#003399,#0057D9);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;margin:0 auto 10px">陈</div>
         <div style="font-size:13px;font-weight:700">陈XX</div>
-        <div style="font-size:10px;color:var(--blue);font-weight:600;margin-top:3px">市场总监</div>
-        <div style="font-size:10px;color:var(--text2);margin-top:8px;line-height:1.5">泳池行业8年<br>渠道资源深厚<br>B端客户关系</div>
+        <div style="font-size:11px;color:var(--blue);font-weight:600;margin-top:3px">市场总监</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5">泳池行业8年<br>渠道资源深厚<br>B端客户关系</div>
       </div>
     </div>
     <!-- 顾问 -->
@@ -926,7 +926,7 @@ body{font-family:var(--font);overflow:hidden;background:#000}
     <div class="grid-2 anim a3">
       <!-- 时间轴 -->
       <div>
-        <svg viewBox="0 0 400 320" width="100%" style="max-width:400px">
+        <svg viewBox="0 0 520 320" width="100%" style="max-width:100%">
           <line x1="30" y1="20" x2="30" y2="300" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
           <circle cx="30" cy="20" r="8" fill="#0057D9"/>
           <circle cx="30" cy="100" r="8" fill="#0057D9"/>
